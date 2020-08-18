@@ -1,0 +1,67 @@
+<ion-content class="swiper-no-swiping">
+
+  <div class="container top ion-text-center" [hidden]="keyboard.isVisible">
+    <img src="assets/imagens/logo_onibus_azul.png" height="85px" alt="Xcursao">
+
+    <ion-segment (ionChange)="segmentChanged($event)" value="login">
+      <ion-segment-button value="login">
+        <ion-label>Login</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label>Cadastrar</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <ion-slides>
+    <ion-slide>
+      <div class="slide-inner ion-padding">
+        <span>Login</span>
+        <br>
+        <ion-item class="ion-marging-top" lines="none">
+          <ion-input type="email" placeholder="E-mail"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="ion-marging-top" lines="none">
+          <ion-input type="password" placeholder="Senha"></ion-input>
+        </ion-item>
+
+        <ion-button class="ion-margin-top" (click)="login()" expand="block" color="light">
+          Entrar
+        </ion-button>
+
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide-inner ion-padding">
+        <span>Cadastro</span>
+        <br>
+        <ion-item class="ion-marging-top" lines="none">
+          <ion-input type="text" placeholder="Nome"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="ion-marging-top" lines="none">
+          <ion-input type="email" placeholder="E-mail"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="ion-marging-top" lines="none">
+          <ion-input type="password" placeholder="Senha"></ion-input>
+        </ion-item>
+        
+        <ion-button class="ion-margin-top" (click)="register()" expand="block" color="light">
+          Cadastrar
+        </ion-button>
+
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+  <div class="paisagem">
+      <div class="road" [ngStyle]="{'background-position-x':roadPosition+'px'}"></div>
+      <div class="container bottom ion-text-center" [hidden]="keyboard.isVisible">
+        <span>Tenha uma excelente Viagem!!</span>
+      </div>
+  </div>
+</ion-content>

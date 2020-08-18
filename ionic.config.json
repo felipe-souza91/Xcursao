@@ -1,0 +1,8 @@
+{
+  "name": "Xcursao",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
