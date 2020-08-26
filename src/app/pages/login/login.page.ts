@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
         message = 'Email Invalido';
         break;
       }
-      console.error(error);
+    
       this.presentToast(message);
     }finally{
       this.loading.dismiss();
@@ -64,10 +64,14 @@ export class LoginPage implements OnInit {
 
   async register(){
     await this.presentLoading();
+
     try{
-      await this.authService.register(this.userRegister);
+       this.authService.register(this.userRegister);
     }catch(error){
       let message:string;
+
+      console.error(error.code);
+
       switch(error.code){
         case 'auth/email-already-in-use':
         message = 'Email ja Cadastrado';
@@ -81,7 +85,6 @@ export class LoginPage implements OnInit {
     }finally{
       this.loading.dismiss();
     }
-    
     
   }
 
