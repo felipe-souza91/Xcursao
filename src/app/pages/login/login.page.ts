@@ -77,7 +77,6 @@ export class LoginPage implements OnInit {
         message = 'Email Invalido';
         break;
       }
-      console.error(error);
       this.presentToast(message);
     }finally{
       this.loading.dismiss();
@@ -87,8 +86,7 @@ export class LoginPage implements OnInit {
   }
 
   async presentLoading() {
-    const loading = await this.loadingCtrl.create({
-      cssClass: 'my-custom-class',
+    this.loading = await this.loadingCtrl.create({
       message: 'Aguarde...',
       //duration: 2000
     });
