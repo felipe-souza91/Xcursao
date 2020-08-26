@@ -1,0 +1,66 @@
+.container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 75%;
+    margin: 0 auto;
+    z-index: 2;
+
+    &.top{
+        top:5%;
+    }
+
+    &.bottom{
+        bottom:30%;
+
+        span{
+            color:#ffff;
+        }
+
+    }
+}
+
+.paisagem{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 51%;
+    background: var(--ion-color-primary);
+    /*background: #1711b8;*/
+
+    .road{
+        position: absolute;
+        top: -142px;
+        left: 0;
+        right: 0;
+        height: 142px;
+        background-image: url('/assets/imagens/road_arvores.png');
+        background-size: contain;
+        transition: all 0.7s;
+    }
+}
+
+
+ion-slides{
+    height: 100%;
+
+    .slide-inner{
+        width: 75%;
+        color:var(--ion-color-primary);
+        background-color: var(--ion-color-shade);
+        border-radius: 10px;
+        --border-style: solid;
+    
+
+        ion-item{
+            --background: rgb(243, 220, 220);
+            --border-radius:10px;
+        }
+
+        ion-input{
+           --color:rgb(66, 21, 21);
+           
+        }
+    }
+}
