@@ -1,10 +1,29 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+export class AuthGuard implements CanActivate{
+  constructor(
+    private authService:AuthService,
+    private router:Router
+  ){}
+  
+  canActivate():Promise<boolean> {
+    return new Promise(resolve=>{
+      this.authService.getauth().onAuthStateChanged(user =>{
+        if(user) this.router.navigate(['home']);
+
+        resolve(user ? true : false);
+
+      })
+    });
+}
+
+/*
 export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -28,4 +47,4 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return true;
   }
-}
+}*/
