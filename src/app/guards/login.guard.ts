@@ -22,7 +22,9 @@ export class LoginGuard implements CanActivate{
       })
     });
 
+  } 
 }
+
 
 /*export class LoginGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
   canActivate(
