@@ -2,13 +2,10 @@
     position: absolute;
     left: 0;
     right: 0;
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
     z-index: 2;
-
-    &.top{
-        top:5%;
-    }
+    background-color:var(--ion-color-primary);
 
     &.bottom{
         bottom:30%;
@@ -16,7 +13,6 @@
         span{
             color:#ffff;
         }
-
     }
 }
 
@@ -25,7 +21,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 51%;
+    height: 57%;
     background: var(--ion-color-primary);
     /*background: #1711b8;*/
 
@@ -35,32 +31,30 @@
         left: 0;
         right: 0;
         height: 142px;
-        background-image: url('/assets/imagens/road_arvores.png');
-        background-size: contain;
-        transition: all 0.7s;
+        background-image: url('/assets/imagens/cursão fv.png');
+       // background-size: contain;
+        //transition: all 0.7s;
     }
 }
-
 
 ion-slides{
     height: 100%;
 
     .slide-inner{
         width: 75%;
-        color:var(--ion-color-primary);
-        background-color: var(--ion-color-shade);
+        color:rgb(255, 255, 255);
+        background-color: var(--ion-color-primary);
         border-radius: 10px;
         --border-style: solid;
-    
 
         ion-item{
-            --background: rgb(243, 220, 220);
+            /*--background: rgb(243, 220, 220);*/
             --border-radius:10px;
         }
 
-        ion-input{
-           --color:rgb(66, 21, 21);
+        /*ion-input{
+           --color:rgb(255, 255, 255);
            
-        }
+        }*/
     }
 }

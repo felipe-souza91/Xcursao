@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
     
     try{
-      await this.authService.register(this.userRegister);
+      this.authService.register(this.userRegister);
     }catch(error){
       let message:string;
 
