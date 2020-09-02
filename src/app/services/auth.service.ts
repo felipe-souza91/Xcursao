@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth/';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -13,11 +13,15 @@ export class AuthService {
     return this.afa.signInWithEmailAndPassword(user.email, user.password);
   }
 
+  logout(user: User){
+    return this.afa.signOut();
+  }
+
   register(user: User){
     return this.afa.createUserWithEmailAndPassword(user.email,user.password);
   }
 
-  getauth(){
+  getAuth(){
     return this.afa;
   }
 

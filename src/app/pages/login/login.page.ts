@@ -3,6 +3,7 @@ import { IonSlide, IonSlides, LoadingController, ToastController } from '@ionic/
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -40,10 +41,11 @@ export class LoginPage implements OnInit {
 
   async login(){
     await this.presentLoading();
+
     try{
       await this.authService.login(this.userLogin);
     }catch(error){
-      let message:string;
+     let message:string;
       switch(error.code){
         case 'auth/email-already-in-use':
         message = 'Email ja Cadastrado';
@@ -54,7 +56,7 @@ export class LoginPage implements OnInit {
         break;
       }
     
-      this.presentToast(message);
+      this.presentToast(error.message);
     }finally{
       this.loading.dismiss();
     }
@@ -64,9 +66,9 @@ export class LoginPage implements OnInit {
 
   async register(){
     await this.presentLoading();
-
+    
     try{
-       this.authService.register(this.userRegister);
+      await this.authService.register(this.userRegister);
     }catch(error){
       let message:string;
 
@@ -81,11 +83,11 @@ export class LoginPage implements OnInit {
         message = 'Email Invalido';
         break;
       }
+
       this.presentToast(message);
     }finally{
       this.loading.dismiss();
     }
-    
   }
 
   async presentLoading() {
@@ -103,5 +105,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
 }
