@@ -13,7 +13,7 @@ export class AuthService {
     return this.afa.signInWithEmailAndPassword(user.email, user.password);
   }
 
-  logout(user: User){
+  logout(){
     return this.afa.signOut();
   }
 

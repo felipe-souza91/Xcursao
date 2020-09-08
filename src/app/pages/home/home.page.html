@@ -1,9 +1,72 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Xcursão</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list *ngIf="!xcursions.lenght">
+    <ion-item *ngFor="let item of [0,1,2]">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 58;"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 38%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let xcursion of xcursions">
+      <ion-item button[routerLink]="['/details',xcursion.id]">
+      
+        <ion-avatar slot="start">
+          <ion-img [src]="xcursion.picture"></ion-img>
+        </ion-avatar>
+
+        <ion-label>
+          {{xcursion.nome}}
+          <p>{{xcursion.data | date : 'short'}}</p>
+        </ion-label>
+
+        <i-note color="primary" slot="end" *ngIf="xcursion.valor">{{xcursion.valor | currency:'BRL'}}</i-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteXcursion(xcursion.id)">
+          <ion-icon slot="top" name="trash"></ion-icon> 
+          Deletar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid >
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="logout()" expand="block" color="danger" shape="round">
+            Sair
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button routerLink="/details" expand="block"  shape="round">
+            Adicionar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
