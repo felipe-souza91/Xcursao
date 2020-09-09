@@ -3,7 +3,7 @@ import { IonSlide, IonSlides, LoadingController, ToastController } from '@ionic/
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,9 @@ export class LoginPage implements OnInit {
   constructor(public keyboard:Keyboard,
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router:Router) { }
+              
 
   ngOnInit() {  
     this.keyboard
@@ -43,7 +45,8 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
 
     try{
-      await this.authService.login(this.userLogin);
+      //await this.authService.login(this.userLogin);
+      await this.router.navigate(['home']);
     }catch(error){
      let message:string;
       switch(error.code){
