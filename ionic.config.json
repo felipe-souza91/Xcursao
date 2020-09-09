@@ -1,8 +1,7 @@
 {
-  "name": "Xcursao",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
+    "name": "surfshop",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "angular"
 }

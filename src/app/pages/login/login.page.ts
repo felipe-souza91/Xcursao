@@ -12,7 +12,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  @ViewChild(IonSlides) slides :IonSlides;
+  @ViewChild(IonSlides,{static:true}) slides :IonSlides;
   public roadPosition:number=0;
   public roadDifference:number=80;
   public userLogin: User = {};
@@ -45,8 +45,8 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
 
     try{
-      //await this.authService.login(this.userLogin);
-      await this.router.navigate(['home']);
+      await this.authService.login(this.userLogin);
+      //await this.router.navigate(['home']);
     }catch(error){
      let message:string;
       switch(error.code){
