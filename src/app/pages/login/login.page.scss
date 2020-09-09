@@ -27,10 +27,10 @@
 
     .road{
         position: absolute;
-        top: -142px;
+        top: -130px;
         left: 0;
         right: 0;
-        height: 142px;
+        height: 200px;
         background-image: url('/assets/imagens/cursão fv.png');
        // background-size: contain;
         //transition: all 0.7s;
@@ -41,15 +41,16 @@ ion-slides{
     height: 100%;
 
     .slide-inner{
+        margin-top: 10%;
         width: 75%;
         color:rgb(255, 255, 255);
         background-color: var(--ion-color-primary);
         border-radius: 10px;
-        --border-style: solid;
+        border-style: solid;
 
         ion-item{
             /*--background: rgb(243, 220, 220);*/
-            --border-radius:10px;
+            border-radius:2px;
         }
 
         /*ion-input{

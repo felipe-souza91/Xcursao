@@ -37,8 +37,8 @@
           {{xcursion.nome}}
           <p>{{xcursion.data | date : 'short'}}</p>
         </ion-label>
-
-        <i-note color="primary" slot="end" *ngIf="xcursion.valor">{{xcursion.valor | currency:'BRL'}}</i-note>
+  
+        <ion-note color="primary" slot="end" *ngIf="xcursion.valor">{{xcursion.valor | currency:'BRL'}}</ion-note>
       </ion-item>
 
       <ion-item-options side="end">
