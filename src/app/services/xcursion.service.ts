@@ -1,8 +1,10 @@
+import { Xcursion } from 'src/app/interfaces/xcursion';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Xcursion } from '../interfaces/xcursion';
 import { AngularFirestoreCollection } from '@angular/fire/firestore/collection/collection';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Injectable({
@@ -27,20 +29,23 @@ export class XcursionService {
     })
     )}
 
-  addXcursion(xcursion:Xcursion){
-
+  addXcursion(xcursion: Xcursion){
+    return this.xcursionsCollection.add(xcursion);
   }
 
-  getXcursion(id:String){
+  getXcursion(id: string){
+    return this.xcursionsCollection.doc<Xcursion>(id).valueChanges();
     
   }
 
-  updateXcursion(id:String,xcursion:Xcursion){
+  updateXcursion(id: string, xcursion){
+
+    return this.xcursionsCollection.doc<Xcursion>(id).update(xcursion);
 
   }
 
-  deleteXcursion(id:String){
-
+  deleteXcursion(id: string){
+    return this.xcursionsCollection.doc<Xcursion>(id).delete();
   }
 
 
