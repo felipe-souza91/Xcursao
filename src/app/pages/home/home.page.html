@@ -1,11 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Xcursão</ion-title>
+    <ion-title class="cor" >Xcursão</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
- 
   <ion-list *ngIf="!xcursions.length">
     <ion-item *ngFor="let item of [0,1,2,3,4]">
       <ion-avatar slot="start">
@@ -24,21 +22,21 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
+<!-- inicio da parte alterado por Thiago-->
   <ion-list>
-    <ion-item-sliding *ngFor="let xcursion of xcursions">
-      <ion-item  button [routerLink]="['/detail', xcursion.id]">
+    <ion-item-sliding  *ngFor="let xcursion of xcursions">
+      <ion-item   button [routerLink]="['/detail', xcursion.id]">
       
-        <ion-label>
+        <ion-label >
          <h2><strong>{{xcursion.nome}}</strong></h2> <br>
-          <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
-          <p> Data:  {{xcursion.data | date : 'short'}}</p>
-         
+          <p> Qtde de vagas: {{xcursion.qt_vagas}}</p>
+          <p> Criação: {{xcursion.dt_criacao}} </p>
+          <p> Data:  {{xcursion.data | date : 'short'}}  
         </ion-label>
-  
-        <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$  {{xcursion.valor}}</ion-note>
+        <ion-note  color="primary"  *ngIf="xcursion.valor"><strong> R$  {{xcursion.valor}}  </strong></ion-note>
+        <ion-note slot="end"><img src="assets/img/avancar.png" height="30"></ion-note>  
       </ion-item>
-
+<!--Fim da parte alterado-->
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="deleteXcursion(xcursion.id)">
           <ion-icon slot="top" name="trash"></ion-icon> 
@@ -46,11 +44,8 @@
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-
   </ion-list>
-
 </ion-content>
-
 <ion-footer>
   <ion-toolbar>
     <ion-grid >
@@ -59,9 +54,10 @@
           <img src="assets/img/icone3.png" (click)="logout()" height="40" >
         </ion-col>
         <ion-col size="6">
-          <img src="assets/img/icone2.jpg" routerLink="/detail" height="50">
+          <img src="assets/img/icone2.png" routerLink="/detail" height="50">
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
+<!---Os button foi alterado pra img Thiago!-->
