@@ -50,7 +50,7 @@ export class DetailPage implements OnInit {
     if (this.xcursionId) {
 
       try {
-        await this.xcursionService;
+        await this.xcursionService.updateXcursion(this.xcursionId,this.xcursion);
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');

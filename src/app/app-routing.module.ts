@@ -4,30 +4,49 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-    {
-        path: 'home',
-        loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
-    },
-    {
-        path: 'login',
-        loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule), canActivate: [LoginGuard]
-    },
-  
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule), canActivate: [LoginGuard]
+  },
+
   {
     path: 'detail',
-    loadChildren: () => import('./pages/detail/detail.module').then( m => m.DetailPageModule)
+    loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailPageModule)
   },
   {
     path: 'detail/:id',
-    loadChildren: () => import('./pages/detail/detail.module').then( m => m.DetailPageModule)
+    loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailPageModule)
   },
+  
+  {
+    path: 'detailscursion',
+    loadChildren: () => import('./pages/detailscursion/detailscursion.module').then(m => m.DetailscursionPageModule)
+  },
+
+  {
+    path: 'detailscursion/:id',
+    loadChildren: () => import('./pages/detailscursion/detailscursion.module').then(m => m.DetailscursionPageModule)
+  },
+  {
+    path: 'alteruser/:id',
+    loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
+  },
+  {
+    path: 'alteruser',
+    loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
+  },
+
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-    ],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

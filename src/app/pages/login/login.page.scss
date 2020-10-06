@@ -1,3 +1,9 @@
+ion-segment{
+    background-color: rgba(255,255,255,0.2);
+    width: 75%;
+    margin: 0 auto;
+    border-radius: 5px;
+}
 .container{
     position: absolute;
     left: 0;
@@ -5,10 +11,11 @@
     width: 100%;
     margin: 0 auto;
     z-index: 2;
-    background-color:var(--ion-color-primary);
+    //background-color:var(--ion-color-primary);
+    background-color: #0055d4ff;
 
     &.bottom{
-        bottom:30%;
+        bottom: 10%;
 
         span{
             color:#ffff;
@@ -21,18 +28,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 57%;
-    background: var(--ion-color-primary);
-    /*background: #1711b8;*/
+    height: 60%;
+    //background: var(--ion-color-primary);
+    background-color: #0055d4ff;
 
     .road{
         position: absolute;
-        top: -130px;
+        top: -200px;
         left: 0;
         right: 0;
-        height: 200px;
-        background-image: url('/assets/imagens/cursão fv.png');
-       // background-size: contain;
+        //height: 100%;
+        //width: 100%;
+        // background-size: contain;
         //transition: all 0.7s;
     }
 }
@@ -44,18 +51,17 @@ ion-slides{
         margin-top: 10%;
         width: 75%;
         color:rgb(255, 255, 255);
-        background-color: var(--ion-color-primary);
+       // background-color: var(--ion-color-primary);
+        background-color: #0044aaff;
         border-radius: 10px;
-        border-style: solid;
-
+        
         ion-item{
-            /*--background: rgb(243, 220, 220);*/
-            border-radius:2px;
-        }
+            --background: rgba(255,255,255,0.2);
+            --border-radius: 10px;
 
-        /*ion-input{
-           --color:rgb(255, 255, 255);
-           
-        }*/
+            ion-input{
+                --color: #fff;
+            }
+        }
     }
 }

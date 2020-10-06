@@ -1,40 +1,38 @@
 <ion-header>
   <ion-toolbar>
-   <ion-buttons slot="start">
-     <ion-back-button class="cor"></ion-back-button>
-   </ion-buttons>
+    <ion-buttons slot="start">
+     <ion-back-button></ion-back-button>
+    </ion-buttons>
 
-<ion-title class="title cor">Viagem</ion-title>
+    <ion-title class="title" >Adicionar excursões</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
-<ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="xcursion.nome" placeholder="Nome"></ion-input>
+    </ion-item>
 
-<ion-item>
-<ion-input type="text" [(ngModel)]="xcursion.nome" placeholder="Nome">
-</ion-input>
-</ion-item>
+    <ion-item>
+      <ion-input type="text"  [(ngModel)]="xcursion.valor"  placeholder="valor"></ion-input>
+    </ion-item>
 
-<ion-item>
-<ion-input type="text"  [(ngModel)]="xcursion.valor"  placeholder="valor R$">
-</ion-input>
-</ion-item>
-
-<ion-item>
+    <ion-item>
 <ion-input type="date"  [(ngModel)]="xcursion.dt_criacao" placeholder="data criação">
 </ion-input>
-</ion-item>
+    </ion-item>
 
 
-<ion-item>
-  <ion-input type="text"  [(ngModel)]="xcursion.qt_vagas" placeholder="Qtde de vagas">
-  </ion-input>
-  </ion-item>
-</ion-list>
+    <ion-item>
+      <ion-input type="text"  [(ngModel)]="xcursion.qt_vagas" placeholder="Qtde viagens"></ion-input>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
 <ion-footer>
-<ion-toolbar>
-<img class="add" src="assets/img/add.png"(click)="saveXcursion()" expand="block">
-</ion-toolbar>
+  <ion-toolbar>
+    <ion-button (click)="saveXcursion()" expand="block" color="primary" >Salvar Viagem</ion-button>
+  </ion-toolbar>
 </ion-footer>
-<!----Página programado por Thiago. Foi adicionado um formulário de lista de viagens-->
+<!----Página programado por Thiago. Foi adicionado um formulario de lista de viagens-->

@@ -1,63 +1,82 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="cor" >Xcursão</ion-title>
+    <ion-title ><img src="assets/imagens/cursão(3).png" height="80px" alt="Xcursao"></ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <ion-list *ngIf="!xcursions.length">
-    <ion-item *ngFor="let item of [0,1,2,3,4]">
-      <ion-avatar slot="start">
-        <ion-skeleton-text animated></ion-skeleton-text>
-      </ion-avatar>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 58;"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text animated style="width: 38%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-<!-- inicio da parte alterado por Thiago-->
-  <ion-list>
-    <ion-item-sliding  *ngFor="let xcursion of xcursions">
-      <ion-item   button [routerLink]="['/detail', xcursion.id]">
-      
-        <ion-label >
-         <h2><strong>{{xcursion.nome}}</strong></h2> <br>
-          <p> Qtde de vagas: {{xcursion.qt_vagas}}</p>
-          <p> Criação: {{xcursion.dt_criacao}} </p>
-          <p> Data:  {{xcursion.data | date : 'short'}}  
+  <div class="container">
+    <ion-list *ngIf="!xcursions.length">
+      <ion-item *ngFor="let item of [0,1,2,3,4]">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 58;"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 38%"></ion-skeleton-text>
+          </p>
         </ion-label>
-        <ion-note  color="primary"  *ngIf="xcursion.valor"><strong> R$  {{xcursion.valor}}  </strong></ion-note>
-        <ion-note slot="end"><img src="assets/img/avancar.png" height="30"></ion-note>  
       </ion-item>
-<!--Fim da parte alterado-->
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteXcursion(xcursion.id)">
-          <ion-icon slot="top" name="trash"></ion-icon> 
-          Deletar
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+    </ion-list>
+  
+    <ion-list>
+      <ion-item-sliding *ngFor="let xcursion of xcursions">
+        <ion-item  button [routerLink]="['/detail', xcursion.id]">
+        
+          <ion-label>
+           <h2><strong>{{xcursion.nome}}</strong></h2> <br>
+            <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
+            <p> Data:  {{xcursion.data | date : 'short'}}</p>
+            
+           
+          </ion-label>
+    
+          <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$  {{xcursion.valor}}</ion-note>
+        </ion-item>
+  
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteXcursion(xcursion.id)">
+            <ion-icon slot="top" name="trash"></ion-icon> 
+            Deletar
+          </ion-item-option>
+
+          <ion-item-option [routerLink]="['/detailscursion', xcursion.id]" >
+            <ion-icon slot="top"></ion-icon> 
+            Detalhes
+          </ion-item-option>
+         
+        </ion-item-options>
+      </ion-item-sliding>
+  
+    </ion-list>
+
+  </div>
+  
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <ion-grid >
       <ion-row>
-        <ion-col size="6">
-          <img src="assets/img/icone3.png" (click)="logout()" height="40" >
+        <ion-col size="3">
+          <img src="assets/imagens/seta.png" (click)="logout()" height="30" >
         </ion-col>
-        <ion-col size="6">
-          <img src="assets/img/icone2.png" routerLink="/detail" height="50">
+      
+        <ion-col size="3">
+          <img src="assets/imagens/alterarLogin.png" routerLink="/alteruser" height="70">
+        </ion-col>
+
+        <ion-col size="3">
+          <img src="assets/imagens/busicon.png" routerLink="/detail" height="50">
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
-<!---Os button foi alterado pra img Thiago!-->
+<!---Criação de alterar login feitp por Thiago-->

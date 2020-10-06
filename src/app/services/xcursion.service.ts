@@ -11,42 +11,35 @@ import { identifierModuleUrl } from '@angular/compiler';
   providedIn: 'root'
 })
 export class XcursionService {
-  private xcursionsCollection : AngularFirestoreCollection<Xcursion>;
+  private xcursionsCollection: AngularFirestoreCollection<Xcursion>;
 
-  constructor(private afs:AngularFirestore) { 
+  constructor(private afs: AngularFirestore) {
     this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
   }
 
-  getXcursions(){
+  getXcursions() {
     return this.xcursionsCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
 
-          return {id, ...data};
-      });
-    })
-    )}
+          return { id, ...data };
+        });
+      })
+    )
+  }
 
-  addXcursion(xcursion: Xcursion){
+  addXcursion(xcursion: Xcursion) {
     return this.xcursionsCollection.add(xcursion);
   }
-
-  getXcursion(id: string){
+  getXcursion(id: string) {
     return this.xcursionsCollection.doc<Xcursion>(id).valueChanges();
-    
   }
-
-  updateXcursion(id: string, xcursion){
-
+  updateXcursion(id: string, xcursion) {
     return this.xcursionsCollection.doc<Xcursion>(id).update(xcursion);
-
   }
-
-  deleteXcursion(id: string){
+  deleteXcursion(id: string) {
     return this.xcursionsCollection.doc<Xcursion>(id).delete();
   }
-
-
 }
