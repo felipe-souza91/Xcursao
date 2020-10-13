@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { XcursionService } from 'src/app/services/xcursion.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { __await } from 'tslib';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -12,23 +13,27 @@ import { __await } from 'tslib';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  
   private xcursions = new Array<Xcursion>();
   private xcursionsSubscription: Subscription;
+  private userSubscription: Subscription;
   private loading: any;
+  private xcursion: Xcursion = {};
+  private user: User = {};
 
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
-    
-    
+    private toastCtrl: ToastController,
+
     ) {
     this.xcursionsSubscription = this.xcursionsService.getXcursions().subscribe(data => {
       this.xcursions = data;
-    });
-   }
+   });
 
+   
+  }
   ngOnInit() {
   }
 

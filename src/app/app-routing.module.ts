@@ -32,14 +32,17 @@ const routes: Routes = [
     path: 'detailscursion/:id',
     loadChildren: () => import('./pages/detailscursion/detailscursion.module').then(m => m.DetailscursionPageModule)
   },
-  {
-    path: 'alteruser/:id',
-    loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
-  },
+  
   {
     path: 'alteruser',
     loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
   },
+
+  {
+    path: 'alteruser/:id',
+    loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
+  },
+
 
 ];
 

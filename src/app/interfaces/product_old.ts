@@ -6,4 +6,5 @@ export interface Product {
     price?: string;
     createdAt?: number;
     userId?: string;
+    nome_criador?: string;
 }

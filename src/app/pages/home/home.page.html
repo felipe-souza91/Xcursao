@@ -27,11 +27,11 @@
   
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
-        <ion-item  button [routerLink]="['/detail', xcursion.id]">
-        
+        <ion-item  button [routerLink]="['/detailscursion', xcursion.id]">
           <ion-label>
            <h2><strong>{{xcursion.nome}}</strong></h2> <br>
             <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
+          
             <p> Data:  {{xcursion.data | date : 'short'}}</p>
             
            
@@ -46,9 +46,9 @@
             Deletar
           </ion-item-option>
 
-          <ion-item-option [routerLink]="['/detailscursion', xcursion.id]" >
+          <ion-item-option button [routerLink]="['/detail', xcursion.id]">
             <ion-icon slot="top"></ion-icon> 
-            Detalhes
+            Aterar
           </ion-item-option>
          
         </ion-item-options>
@@ -65,13 +65,15 @@
     <ion-grid >
       <ion-row>
         <ion-col size="3">
+         
           <img src="assets/imagens/seta.png" (click)="logout()" height="30" >
         </ion-col>
-      
+     
         <ion-col size="3">
-          <img src="assets/imagens/alterarLogin.png" routerLink="/alteruser" height="70">
-        </ion-col>
-
+        
+        <img src="assets/imagens/alterarLogin.png" [routerLink]="['/alteruser', user.id]" height="70">
+        
+      </ion-col>
         <ion-col size="3">
           <img src="assets/imagens/busicon.png" routerLink="/detail" height="50">
         </ion-col>

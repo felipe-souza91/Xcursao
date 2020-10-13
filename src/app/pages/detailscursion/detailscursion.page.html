@@ -8,26 +8,30 @@
 </ion-header>
 
 <ion-content>
+<ion-item>
 
-  <ion-list>
-  
-        <ion-label>
-          <h1>Detahe da xcursão</h1>
+  <img [src]="xcursion.imagem">
+</ion-item>
+ 
+<ion-item>
 
-         <h2>Nome da Viagem:</h2> <br>
-          <h2> Qtde de viagem:</h2><br>
-           <h2> Valor de viagem:</h2>
-         
-        </ion-label>
-  
-        <ion-note color="primary" slot="end" ></ion-note>
-      
+  <h3><strong> Local da xcurção:</strong> {{xcursion.nome}}</h3>
+  </ion-item>
+  <ion-item>
+  <h3><strong> Detalhes:</strong> {{xcursion.descricao}}</h3>
+</ion-item>
+<ion-item>
+  <h3><strong> Valor em Dinheiro R$:</strong> {{xcursion.valor}}</h3>
+</ion-item>
+<ion-item>
+  <h3><strong> Data agendado:</strong> {{xcursion.dt_criacao}}</h3>
+</ion-item>
 
-  </ion-list>
+<ion-item>
+  <h3><strong> Data do retorno:</strong> {{xcursion.tempoRetorno}}</h3>
+</ion-item>
 
-
-
-
-
-
+<ion-item>
+  <h3><strong> Qtde de vagas:</strong> {{xcursion.qt_vagas}}</h3>
+</ion-item>
 </ion-content>

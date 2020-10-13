@@ -14,6 +14,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {Camera} from '@ionic-native/camera/ngx';
+import {File} from '@ionic-native/file/ngx';
+
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
@@ -23,13 +27,16 @@ import { environment } from 'src/environments/environment';
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        AngularFireStorageModule
     ],
     providers: [
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        Keyboard
+        Keyboard,
+        Camera,
+         File
     ],
     bootstrap: [AppComponent]
 })
