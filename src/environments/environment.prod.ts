@@ -4,15 +4,14 @@ export const environment = {
     // Your web app's Firebase configuration
   
   
-      apiKey: "AIzaSyDDMrOMp3AP3-of-oBSKfQ7UEqPdrC3Htc",
-      authDomain: "xcursao.firebaseapp.com",
-      databaseURL: "https://xcursao.firebaseio.com",
-      projectId: "xcursao",
-      storageBucket: "xcursao.appspot.com",
-      messagingSenderId: "407006208662",
-      appId: "1:407006208662:web:be8501d2b5b9474fca18b7",
-      measurementId: "G-9PT81C1N0P"
-  
+    apiKey: "AIzaSyABfMCDxbhWX5V-piNtKWnDBTrPxSIWqdQ",
+    authDomain: "xcursaoviagens.firebaseapp.com",
+    databaseURL: "https://xcursaoviagens.firebaseio.com",
+    projectId: "xcursaoviagens",
+    storageBucket: "xcursaoviagens.appspot.com",
+    messagingSenderId: "83194349138",
+    appId: "1:83194349138:web:d209241e08d1599782818b",
+    measurementId: "G-J87ESMTL7C"
   
     // Initialize Firebase
    /* firebase.initializeApp(firebaseConfig);

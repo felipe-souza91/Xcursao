@@ -42,6 +42,14 @@ const routes: Routes = [
     path: 'alteruser/:id',
     loadChildren: () => import('./pages/alteruser/alteruser.module').then( m => m.AlteruserPageModule)
   },
+  {
+    path: 'gps',
+    loadChildren: () => import('./pages/gps/gps.module').then( m => m.GpsPageModule)
+  },
+  {
+    path: 'calendario',
+    loadChildren: () => import('./pages/calendario/calendario.module').then( m => m.CalendarioPageModule)
+  },
 
 
 ];

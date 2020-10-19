@@ -1,7 +1,7 @@
+import { AuthGuard } from './../../guards/auth.guard';
 import { async } from '@angular/core/testing';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { User } from './../../interfaces/user_old';
-import { Xcursion } from './../../interfaces/xcursion';
+import { User } from './../../interfaces/user';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController, NavController, Platform } from '@ionic/angular';
 import { XcursionService } from 'src/app/services/xcursion.service';
@@ -20,7 +20,7 @@ export class AlteruserPage implements OnInit {
   private loading: any;
   private userId: string = null;
   private UserSubscription: Subscription;
-  
+
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -31,39 +31,54 @@ export class AlteruserPage implements OnInit {
     private navCtrl: NavController,
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
-    private camera: Camera, 
+    private camera: Camera,
     private plataform: Platform
-  
 
-  ) { 
+
+  ) {
     this.userId = this.activeRoute.snapshot.params['id'];
-   } 
+    if (this.userId) this.loadUser();
+  };
+
+  loadUser() {
+    this.UserSubscription = this.authService.getUser(this.userId).subscribe(data => {
+      this.user = data;
+    });
+  }
 
   ngOnInit() {
+    
   }
- 
- async alteraUser(){
-    try{
+
+  async alteraUser() {
+    try {
       await this.authService.updateUser(this.userId, this.user);
-      await this.loading.dismiss();
+     
 
-    }catch(error){
-      this.presentToast("Erro ao alterar");
+      this.navCtrl.navigateBack('/home');
+
+    } catch (error) {
+      this.presentToast("Erro ao alterar!");
+      console.log(error);
     }
-   
-  
-}
+  }
 
-async deleteUser() {
-  try {
-    await this.authService.deleteUser(this.user.id);
-  } catch (error) {
-   this.presentToast("Erro ao deletar");
+
+  async deleteUser() {
+    try {
+      await this.authService.deleteUser(this.userId);
+      await this.authService.logout();
+      this.navCtrl.navigateBack('/login');
+
+    } catch (error) {
+      this.presentToast("Erro ao deletar!");
+    }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.loadingCtrl.create({ message, duration: 2000 });
+    toast.present();
+
   }
 }
-async presentToast(message: string) {
-  const toast = await this.loadingCtrl.create({ message, duration: 2000 });
-  toast.present();
-
-}
-}
+// Códigos criado por Thiago  programado para excluir e deletar login autentication

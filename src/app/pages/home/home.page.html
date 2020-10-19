@@ -26,7 +26,7 @@
     </ion-list>
   
     <ion-list>
-      <ion-item-sliding *ngFor="let xcursion of xcursions">
+      <ion-item-sliding *ngFor="let xcursion of xcursions" >
         <ion-item  button [routerLink]="['/detailscursion', xcursion.id]">
           <ion-label>
            <h2><strong>{{xcursion.nome}}</strong></h2> <br>
@@ -41,8 +41,8 @@
         </ion-item>
   
         <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="deleteXcursion(xcursion.id)">
-            <ion-icon slot="top" name="trash"></ion-icon> 
+          <ion-item-option color="danger" >
+            <ion-icon slot="top" name="trash" (click)="deleteXcursion(xcursion.id)"></ion-icon> 
             Deletar
           </ion-item-option>
 
@@ -64,21 +64,34 @@
   <ion-toolbar>
     <ion-grid >
       <ion-row>
-        <ion-col size="3">
-         
-          <img src="assets/imagens/seta.png" (click)="logout()" height="30" >
+        <ion-item-sliding  *ngFor="let user of users">
+          
+        <ion-col size="2">
+          <img src="assets/imagens/seta.png" (click)="logout()" height="20" >
         </ion-col>
-     
-        <ion-col size="3">
-        
-        <img src="assets/imagens/alterarLogin.png" [routerLink]="['/alteruser', user.id]" height="70">
-        
-      </ion-col>
-        <ion-col size="3">
+    
+        <ion-col size="2">
           <img src="assets/imagens/busicon.png" routerLink="/detail" height="50">
         </ion-col>
+
+        <ion-col size="2">
+          <img src="assets/imagens/alterarLogin.png" [routerLink]="['/alteruser', user.id]" height="40">
+        </ion-col>
+         
+        <ion-col class="col" size="4">
+          <img src="assets/imagens/gps.png" routerLink="/gps" height="30">
+        </ion-col>
+        <ion-col class="col2" size="4">
+          <img src="assets/imagens/agenda.png" routerLink="/calendario"  height="40">
+        </ion-col>
+        
+        
+
+     
+
+      </ion-item-sliding >
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
-<!---Criação de alterar login feitp por Thiago-->
+<!--- Alterar login feitp por Thiago-->

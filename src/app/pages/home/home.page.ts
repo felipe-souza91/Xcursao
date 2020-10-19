@@ -1,9 +1,10 @@
+
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Xcursion } from 'src/app/interfaces/xcursion';
 import { Subscription } from 'rxjs';
 import { XcursionService } from 'src/app/services/xcursion.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service_org';
 import { __await } from 'tslib';
 import { User } from 'src/app/interfaces/user';
 
@@ -13,8 +14,9 @@ import { User } from 'src/app/interfaces/user';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  
+
   private xcursions = new Array<Xcursion>();
+  private users = new Array<User>();
   private xcursionsSubscription: Subscription;
   private userSubscription: Subscription;
   private loading: any;
@@ -27,26 +29,30 @@ export class HomePage implements OnInit {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
 
-    ) {
+  ) {
+
+    this.userSubscription = this.authService.getUsers().subscribe(data => {
+      this.users = data;
+    });
+
     this.xcursionsSubscription = this.xcursionsService.getXcursions().subscribe(data => {
       this.xcursions = data;
-   });
+    });
 
-   
   }
   ngOnInit() {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.xcursionsSubscription.unsubscribe();
   }
 
-  async logout(){
-    try{
+  async logout() {
+    try {
       await this.authService.logout();
-    }catch(error){
+    } catch (error) {
       console.error(error);
-      
+
     }
   }
 
@@ -54,7 +60,7 @@ export class HomePage implements OnInit {
     try {
       await this.xcursionsService.deleteXcursion(id);
     } catch (error) {
-     this.presentToast("Erro ao deletar");
+      this.presentToast("Erro ao deletar");
     }
   }
 

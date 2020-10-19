@@ -83,8 +83,8 @@ export class LoginPage implements OnInit {
     try {
 
       const newUserObject = Object.assign({}, this.userRegister);
-      delete newUserObject.email;
-      delete newUserObject.password;
+      //delete newUserObject.email;
+      //delete newUserObject.password;
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
 

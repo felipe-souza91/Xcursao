@@ -12,6 +12,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 
@@ -39,7 +41,9 @@ export class DetailPage implements OnInit {
     private camera: Camera,
     private platform: Platform,
     private file: File,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private afa: AngularFireAuth,
+    private afs: AngularFirestore
 
 
   ) {
@@ -104,7 +108,6 @@ export class DetailPage implements OnInit {
   async saveXcursion() {
     await this.presentLoading();
 
-
     if (this.xcursionId) {
 
       try {
@@ -122,7 +125,11 @@ export class DetailPage implements OnInit {
       this.xcursion.data = new Date().getTime();
 
       try {
+        const newUserObject = Object.assign({}, this.xcursion);
+
+       
         await this.xcursionService.addXcursion(this.xcursion);
+        
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');

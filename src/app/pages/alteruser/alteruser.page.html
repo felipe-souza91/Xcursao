@@ -14,11 +14,9 @@
       
   
       <ion-list>
+       
         <ion-item>
-          <ion-input type="text" placeholder="id" [(ngModel)]="user.id"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="text" placeholder="Nome" [(ngModel)]="user.nome_criador"></ion-input>
+          <ion-input type="text" placeholder="Nome"  [(ngModel)]="user.nome_criador" ></ion-input>
         </ion-item>
         <ion-item>
           <ion-input type="text" placeholder="Data Nascimento" [(ngModel)]="user.dt_nasc"></ion-input>
@@ -29,7 +27,7 @@
         </ion-item>
     
         <ion-item>
-    <ion-input type="passoword" placeholder="senha" [(ngModel)]="user.password">
+    <ion-input type="password" placeholder="senha" [(ngModel)]="user.password">
     </ion-input>
         </ion-item>
       </ion-list>

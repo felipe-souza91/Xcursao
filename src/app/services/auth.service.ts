@@ -1,4 +1,4 @@
-import { User } from './../interfaces/user_old';
+import { User } from './../interfaces/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection } from '@angular/fire/firestore/collection/collection';
