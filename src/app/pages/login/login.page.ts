@@ -1,3 +1,5 @@
+import { HomePage } from './../home/home.page';
+
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -6,6 +8,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { Routes, RouterModule, Router } from '@angular/router';
+
 
 
 @Component({
@@ -22,6 +25,7 @@ export class LoginPage implements OnInit {
   public userLogin: User = {};
   public userRegister: User = {};
   private loading: any;
+  private home: HomePage;
 
   constructor(
 

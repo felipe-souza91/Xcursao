@@ -29,9 +29,10 @@ export class DetailscursionPage implements OnInit {
   if (this.xcursionId) this.loadXvision(); }
 
   ngOnInit(){}
+  
   ngOndestroy() {
 
-    if (this.xcursionSubscription) this.xcursionsService.getXcursions().subscribe();
+    if (this.xcursionSubscription) this.xcursionsService.getXcursionsTotal().subscribe();
   }
 
   loadXvision() {

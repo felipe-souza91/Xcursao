@@ -26,9 +26,6 @@ export class HomePage implements OnInit {
   private loading: any;
   private xcursion: Xcursion = {};
   private user: User = {};
-  private sampleArr = [];
-  private rresultArr = [];
-
   private search: string;
 
 
@@ -52,6 +49,7 @@ export class HomePage implements OnInit {
   }
   ngOnInit() {
   }
+ 
 
   searchChanged(){
     if(this.search.length > 0){

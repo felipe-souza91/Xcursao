@@ -55,7 +55,7 @@ export class DetailPage implements OnInit {
   ngOnInit() { }
 
   ngOndestroy() {
-    if (this.xcursionSubscription) this.xcursionService.getXcursions().subscribe();
+    if (this.xcursionSubscription) this.xcursionService.getXcursionsTotal().subscribe();
   }
   loadXvision() {
     this.xcursionSubscription = this.xcursionService.getXcursion(this.xcursionId).subscribe(data => {
