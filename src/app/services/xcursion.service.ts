@@ -15,22 +15,34 @@ export class XcursionService {
 
   constructor(
     private afs: AngularFirestore) {
-    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
+    
   }
 
-  getXcursions() {
+  getXcursions(search: string) {
+    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('nome', '==', search));
     return this.xcursionsCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-
           return { id, ...data };
         });
       })
     )
   }
-
+  getXcursionsTotal() {
+    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
+    return this.xcursionsCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    )
+  }
+  
   addXcursion(xcursion: Xcursion) {
     return this.xcursionsCollection.add(xcursion);
   }

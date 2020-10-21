@@ -1,3 +1,4 @@
+import { Platform, LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GpsPage implements OnInit {
 
-  constructor() { }
+  private loading: any;
+ // private map: GoogleMap;
+ private search: any;
+
+  constructor(
+    private plataform: Platform,
+    private loadingCtrl: LoadingController
+  ) { }
 
   ngOnInit() {
   }
+  searchChanged(){
 
+  }
 }
