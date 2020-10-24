@@ -1,14 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title ><img src="assets/imagens/cursão(3).png" height="80px" alt="Xcursao"></ion-title>
-  </ion-toolbar>
-</ion-header>
+<div #map class="top">
+  <label>
+    <h1>Encontre suas viagens aqui e divirta-se!!!</h1>
+  </label>
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
+  </ion-searchbar>
+</div>
 
 <ion-content>
-  <div #map>
-<ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar?"></ion-searchbar>
-
-</div>
   <div class="container">
     <ion-list *ngIf="!xcursions.length">
       <ion-item *ngFor="let item of [0,1,2,3,4]">
@@ -28,70 +26,65 @@
         </ion-label>
       </ion-item>
     </ion-list>
-  
+
     <ion-list>
-      <ion-item-sliding  *ngFor="let xcursion of xcursions" >
-        
-        <ion-item  button [routerLink]="['/detailscursion', xcursion.id]">
+      <ion-item-sliding *ngFor="let xcursion of xcursions">
+
+        <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
           <ion-label>
-           <h2><strong>{{xcursion.nome}}</strong></h2> <br>
+            <h2><strong>{{xcursion.nome}}</strong></h2> <br>
             <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
-          
-            <p> Data:  {{xcursion.data | date : 'short'}}</p>
-            
-           
+
+            <p> Data: {{xcursion.data | date : 'short'}}</p>
+
+
           </ion-label>
-    
-          <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$  {{xcursion.valor}}</ion-note>
+
+          <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$ {{xcursion.valor}}</ion-note>
         </ion-item>
-  
+
         <ion-item-options side="end">
-          <ion-item-option color="danger" >
-            <ion-icon slot="top" name="trash" (click)="deleteXcursion(xcursion.id)"></ion-icon> 
+          <ion-item-option color="danger">
+            <ion-icon slot="top" name="trash" (click)="deleteXcursion(xcursion.id)"></ion-icon>
             Deletar
           </ion-item-option>
           <ion-item-option button [routerLink]="['/detail', xcursion.id]">
-            <ion-icon slot="top"></ion-icon> 
+            <ion-icon slot="top"></ion-icon>
             Aterar
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-  
+
     </ion-list>
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
-    <ion-grid >
-      <ion-row>
-        <ion-item-sliding  *ngFor="let user of users">
-          
+  <ion-grid>
+    <ion-row>
+      <ion-item-sliding >
+       <!--*ngFor="let user of users"-->
         <ion-col size="2">
-          <img src="assets/imagens/seta.png" (click)="logout()" height="20" >
-        </ion-col>
-    
-        <ion-col size="2">
-          <img src="assets/imagens/busicon.png" routerLink="/detail" height="50">
+          <img src="assets/imagens/home.svg" [routerLink]="['/home']" width="40" height="40">
         </ion-col>
 
         <ion-col size="2">
-          <img src="assets/imagens/alterarLogin.png" [routerLink]="['/alteruser', user.id]" height="40">
+          <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
         </ion-col>
-         
-        <ion-col class="col" size="4">
-          <img src="assets/imagens/gps.png" routerLink="/gps" height="30">
-        </ion-col>
-        <ion-col class="col2" size="4">
-          <img src="assets/imagens/agenda.png" routerLink="/calendario"  height="40">
-        </ion-col>
-        
-        
 
-     
+        <ion-col size="2">
+          <img src="assets/imagens/add.svg" routerLink="/detail" width="40" height="40">
+        </ion-col>
 
-      </ion-item-sliding >
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+        <ion-col size="2">
+          <img src="assets/imagens/calendario.svg" routerLink="/calendario" width="40" height="40">
+        </ion-col>
+
+        <ion-col size="2">
+          <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
+        </ion-col>
+
+      </ion-item-sliding>
+    </ion-row>
+  </ion-grid>
 </ion-footer>
 <!--- Alterar login feitp por Thiago-->

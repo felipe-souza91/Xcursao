@@ -1,37 +1,46 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-     </ion-buttons>
-    <ion-title>Detalhe da xcursão</ion-title>
-  </ion-toolbar>
+    <h1> Detalhes da excursão</h1>
 </ion-header>
 
+<div class="img">
+  <img [src]="xcursion.imagem" width="100%" height="200px">
+</div>
+
 <ion-content>
-<ion-item>
-
-  <img [src]="xcursion.imagem">
-</ion-item>
- 
-<ion-item>
-
-  <h3><strong> Local da xcurção:</strong> {{xcursion.nome}}</h3>
-  </ion-item>
   <ion-item>
-  <h3><strong> Detalhes:</strong> {{xcursion.descricao}}</h3>
-</ion-item>
-<ion-item>
-  <h3><strong> Valor em Dinheiro R$:</strong> {{xcursion.valor}}</h3>
-</ion-item>
-<ion-item>
-  <h3><strong> Data agendado:</strong> {{xcursion.dt_criacao}}</h3>
-</ion-item>
+    <h3><strong> Local da Excursão:</strong> {{xcursion.nome}}</h3>
+  </ion-item>
 
-<ion-item>
-  <h3><strong> Data do retorno:</strong> {{xcursion.tempoRetorno}}</h3>
-</ion-item>
+  <ion-item>
+    <h3><strong> Detalhes:</strong> {{xcursion.descricao}}</h3>
+  </ion-item>
 
-<ion-item>
-  <h3><strong> Qtde de vagas:</strong> {{xcursion.qt_vagas}}</h3>
-</ion-item>
+  <ion-item>
+    <h3><strong> Valor em Dinheiro R$:</strong> {{xcursion.valor}}</h3>
+  </ion-item>
+
+  <ion-item>
+    <h3><strong> Data partida:</strong> {{xcursion.dt_criacao}}</h3>
+  </ion-item>
+
+  <ion-item>
+    <h3><strong> Data do retorno:</strong> {{xcursion.tempoRetorno}}</h3>
+  </ion-item>
+
+  <ion-item>
+    <h3><strong> Qtde de vagas:</strong> {{xcursion.qt_vagas}}</h3>
+  </ion-item>
 </ion-content>
+
+<div class="rodape">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/imagens/voltar.svg" width="30" height="30" [routerLink]="['/home']" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+  
+    
