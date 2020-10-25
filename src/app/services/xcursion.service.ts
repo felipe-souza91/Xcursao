@@ -12,6 +12,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class XcursionService {
   private xcursionsCollection: AngularFirestoreCollection<Xcursion>;
+  
 
   constructor(
     private afs: AngularFirestore) {

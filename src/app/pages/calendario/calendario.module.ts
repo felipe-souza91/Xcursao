@@ -8,13 +8,16 @@ import { CalendarioPageRoutingModule } from './calendario-routing.module';
 
 import { CalendarioPage } from './calendario.page';
 
+import { NgCalendarModule } from 'ionic2-calendar';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendarioPageRoutingModule
+    CalendarioPageRoutingModule,
+    NgCalendarModule
   ],
   declarations: [CalendarioPage]
 })
-export class CalendarioPageModule {}
+export class CalendarioPageModule { }
