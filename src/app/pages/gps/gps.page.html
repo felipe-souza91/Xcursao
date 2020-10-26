@@ -1,4 +1,28 @@
-
-<ion-content>
-
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="Voltar"></ion-back-button>
+          </ion-buttons>
+      <ion-title>Gps</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content padding>
+<div id="map" style ="width: 100%; height: 60%;"></div>
+<ion-label><b>Latitude:</b> {{latitude}}</ion-label><br><br>
+<ion-label><b>Lontitude:</b> {{longitude}}</ion-label><br><br>
+<ion-label><b>Timestamp:</b> {{timestamp}}</ion-label><br><br>
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-item-sliding >
+        <ion-col class="col" size="2">
+          <img src="assets/imagens/gps.png" (click)='GetLocation()' width="40" height="40">
+        </ion-col>
+      </ion-item-sliding>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+
+

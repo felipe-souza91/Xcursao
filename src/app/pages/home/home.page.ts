@@ -49,8 +49,6 @@ export class HomePage implements OnInit {
   }
   ngOnInit() {
   }
- 
-
   searchChanged(){
     if(this.search.length > 0){
       this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search).subscribe(data => {

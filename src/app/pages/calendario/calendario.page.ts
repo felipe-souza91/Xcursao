@@ -3,9 +3,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { Event } from './../../interfaces/event';
 import { EventService } from './../../services/event.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { AngularFirestoreCollection } from '@angular/fire/firestore/collection/collection';
+import {CalendarComponent} from 'ionic2-calendar/calendar';
 
 @Component({
   selector: 'app-calendario',
@@ -19,7 +20,6 @@ export class CalendarioPage implements OnInit {
   private loading: any;
   private xcursionsSubscription: Subscription;
   private eventCollection: AngularFirestoreCollection<Event>;
-
   minDate = new Date().toISOString();
   calendar = {
     mode: 'month',

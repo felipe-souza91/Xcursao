@@ -41,6 +41,15 @@ const routes: Routes = [
     path: 'calendario',
     loadChildren: () => import('./pages/calendario/calendario.module').then( m => m.CalendarioPageModule)
   },
+  {
+    path: 'galeria-fotos',
+    loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
+  },
+
+  {
+    path: 'galeria-fotos/:id',
+    loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
+  },
 
 
 ];

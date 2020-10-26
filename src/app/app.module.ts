@@ -18,6 +18,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {Camera} from '@ionic-native/camera/ngx';
 import {File} from '@ionic-native/file/ngx';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { NgCalendarModule  } from 'ionic2-calendar';
         AngularFireAuthModule,
         AngularFirestoreModule,
         AngularFireStorageModule,
-        NgCalendarModule 
+        NgCalendarModule,
+        
+       
     ],
     providers: [
         StatusBar,
@@ -39,7 +42,9 @@ import { NgCalendarModule  } from 'ionic2-calendar';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         Keyboard,
         Camera,
-         File
+         File,
+         Geolocation,
+        
     ],
     bootstrap: [AppComponent]
 })

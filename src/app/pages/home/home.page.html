@@ -48,13 +48,18 @@
             <ion-icon slot="top" name="trash" (click)="deleteXcursion(xcursion.id)"></ion-icon>
             Deletar
           </ion-item-option>
+
           <ion-item-option button [routerLink]="['/detail', xcursion.id]">
             <ion-icon slot="top"></ion-icon>
             Aterar
           </ion-item-option>
+
+          <ion-item-option color="success" button [routerLink]="['/galeria-fotos',xcursion.id]">
+            <ion-icon slot="top"></ion-icon>
+            <img src="assets/imagens/fotos.png" height="70">
+          </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-
     </ion-list>
   </div>
 </ion-content>
