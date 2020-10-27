@@ -1,3 +1,4 @@
+import { Xcursion } from './../../interfaces/xcursion';
 import { HomePage } from './../home/home.page';
 
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -7,6 +8,7 @@ import { IonSlide, IonSlides, LoadingController, ToastController } from '@ionic/
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { XcursionService} from 'src/app/services/xcursion.service';
 import { Routes, RouterModule, Router } from '@angular/router';
 
 
@@ -28,7 +30,6 @@ export class LoginPage implements OnInit {
   private home: HomePage;
 
   constructor(
-
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
     public keyboard: Keyboard,
@@ -36,9 +37,9 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private authService: AuthService,
+    private xcursionService: XcursionService,
     private router: Router) { }
-
-
+    
   ngOnInit() {
     this.keyboard
   }
@@ -51,12 +52,9 @@ export class LoginPage implements OnInit {
       this.slides.slideNext();
       this.roadPosition -= this.roadDifference;
     }
-
   }
-
   async login() {
     await this.presentLoading();
-
     try {
       await this.authService.login(this.userLogin);
       await this.router.navigate(['home']);
@@ -66,7 +64,6 @@ export class LoginPage implements OnInit {
         case 'auth/email-already-in-use':
           message = 'Email já Cadastrado';
           break;
-
         case 'auth/invalid-email':
           message = 'Email Invalido';
           break;
@@ -76,33 +73,23 @@ export class LoginPage implements OnInit {
     } finally {
       this.loading.dismiss();
     }
-
-
   }
 
   async register() {
-
     await this.presentLoading();
-
     try {
-
       const newUserObject = Object.assign({}, this.userRegister);
       //delete newUserObject.email;
       //delete newUserObject.password;
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
-
-
     } catch (error) {
       let message: string;
-
       console.error(error.code);
-
       switch (error.code) {
         case 'auth/email-already-in-use':
           message = 'Email ja Cadastrado';
           break;
-
         case 'auth/invalid-email':
           message = 'Email Invalido';
           break;
@@ -112,7 +99,6 @@ export class LoginPage implements OnInit {
     } finally {
       this.loading.dismiss();
     }
-
   }
 
   async presentLoading() {

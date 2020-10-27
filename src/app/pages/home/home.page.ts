@@ -24,7 +24,6 @@ export class HomePage implements OnInit {
   private xcursionsSubscription: Subscription;
   private userSubscription: Subscription;
   private loading: any;
-  private xcursion: Xcursion = {};
   private user: User = {};
   private search: string;
 

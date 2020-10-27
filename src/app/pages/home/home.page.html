@@ -54,7 +54,7 @@
             Aterar
           </ion-item-option>
 
-          <ion-item-option color="success" button [routerLink]="['/galeria-fotos',xcursion.id]">
+          <ion-item-option color="success" button routerLink='/addphoto'>
             <ion-icon slot="top"></ion-icon>
             <img src="assets/imagens/fotos.png" height="70">
           </ion-item-option>
@@ -67,26 +67,24 @@
   <ion-grid>
     <ion-row>
       <ion-item-sliding >
-       <!--*ngFor="let user of users"-->
-        <ion-col size="2">
-          <img src="assets/imagens/home.svg" [routerLink]="['/home']" width="40" height="40">
-        </ion-col>
+     
+       <ion-col size="2">
+        <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
+      </ion-col>
 
         <ion-col size="2">
           <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
         </ion-col>
 
         <ion-col size="2">
+          <img src="assets/imagens/home.svg" [routerLink]="['/home']" width="40" height="40">
+        </ion-col>
+
+        <ion-col size="2">
           <img src="assets/imagens/add.svg" routerLink="/detail" width="40" height="40">
         </ion-col>
 
-        <ion-col size="2">
-          <img src="assets/imagens/calendario.svg" routerLink="/calendario" width="40" height="40">
-        </ion-col>
-
-        <ion-col size="2">
-          <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
-        </ion-col>
+        
 
       </ion-item-sliding>
     </ion-row>

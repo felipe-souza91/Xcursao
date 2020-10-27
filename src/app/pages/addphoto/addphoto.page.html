@@ -1,15 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Galeria de Fotos</ion-title>
+      <ion-buttons slot="start">
+      <ion-back-button text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar foto</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
- 
 
+<ion-content>
+
+  <div class="ion-padding">
+    <img class="img" src="assets/imagens/camera.jpg" (click)="TakePhotos()" >
+  </div>
 
   <div class="container">
-    <ion-list >
-      <ion-item *ngFor="let item of [0,1,2,3,4]">
+    <ion-list *ngIf="!photos.length" >
+      <ion-item *ngFor="let item of [0,1,2,3]">
         <ion-avatar slot="start">
           <ion-skeleton-text animated></ion-skeleton-text>
         </ion-avatar>
@@ -28,16 +34,11 @@
     </ion-list>
 
     <ion-list>
-      <ion-item-sliding >
+      <ion-item-sliding *ngFor="let photo of photos" >
 
         <ion-item button >
           <ion-label>
-            <h2><strong></strong></h2> <br>
-            <p> </p>
-
-            <p></p>
-
-
+            <h2><strong>{{photo}}</strong></h2> 
           </ion-label>
 
           <ion-note color="primary" slot="end" ></ion-note>
@@ -57,23 +58,4 @@
       </ion-item-sliding>
     </ion-list>
   </div>
- 
 </ion-content>
-<ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-item-sliding >
-       <!--*ngFor="let user of users"-->
-        <ion-col class="col-1"  size="2">
-          <img src="assets/imagens/seta.png"  routerLink="/home" width="40" height="40">
-        </ion-col>
-        <ion-col class="col-2"  size="2">
-          <img src="assets/imagens/home.svg"  routerLink="/home"  width="40" height="40">
-        </ion-col>
-      
-      </ion-item-sliding>
-    </ion-row>
-  </ion-grid>
-</ion-footer>
-
-

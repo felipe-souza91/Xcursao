@@ -37,10 +37,7 @@ const routes: Routes = [
     path: 'gps',
     loadChildren: () => import('./pages/gps/gps.module').then( m => m.GpsPageModule)
   },
-  {
-    path: 'calendario',
-    loadChildren: () => import('./pages/calendario/calendario.module').then( m => m.CalendarioPageModule)
-  },
+  
   {
     path: 'galeria-fotos',
     loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
@@ -49,6 +46,10 @@ const routes: Routes = [
   {
     path: 'galeria-fotos/:id',
     loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
+  },
+  {
+    path: 'addphoto',
+    loadChildren: () => import('./pages/addphoto/addphoto.module').then( m => m.AddphotoPageModule)
   },
 
 

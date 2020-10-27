@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -17,9 +18,10 @@ import { environment } from 'src/environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {Camera} from '@ionic-native/camera/ngx';
 import {File} from '@ionic-native/file/ngx';
-import { NgCalendarModule  } from 'ionic2-calendar';
+
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 
+ 
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,10 +33,8 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        AngularFireStorageModule,
-        NgCalendarModule,
+        AngularFireStorageModule 
         
-       
     ],
     providers: [
         StatusBar,

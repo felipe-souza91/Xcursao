@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreCollection } from '@angular/fire/firestore/collection/collection';
 import { map } from 'rxjs/operators';
-import { identifierModuleUrl } from '@angular/compiler';
+
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class XcursionService {
   private xcursionsCollection: AngularFirestoreCollection<Xcursion>;
-  
+
 
   constructor(
     private afs: AngularFirestore) {
@@ -31,6 +31,7 @@ export class XcursionService {
       })
     )
   }
+  
   getXcursionsTotal() {
     this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
     return this.xcursionsCollection.snapshotChanges().pipe(
@@ -38,6 +39,7 @@ export class XcursionService {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
+         
           return { id, ...data };
         });
       })
@@ -56,4 +58,6 @@ export class XcursionService {
   deleteXcursion(id: string) {
     return this.xcursionsCollection.doc<Xcursion>(id).delete();
   }
+
+  
 }

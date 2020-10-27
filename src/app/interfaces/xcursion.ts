@@ -1,7 +1,8 @@
 export interface Xcursion {
     id? :string;
-    nome? :string;
-    data? :number;
+    nome?: string;
+    data?: number;
+    email?: string;
     tempoRetorno? :number;
     valor?:string;
     dt_criacao?:number;
