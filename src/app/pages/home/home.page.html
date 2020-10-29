@@ -1,6 +1,10 @@
 <div #map class="top">
   <label>
     <h1>Encontre suas viagens aqui e divirta-se!!!</h1>
+    <p style = 'color: #ffffff; margin-left:30px;'>
+    <img src="assets/imagens/favorita.png"  routerLink="/favoritos" height="30"/>
+    Meus favoritos</p>
+  
   </label>
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
@@ -44,9 +48,9 @@
         </ion-item>
 
         <ion-item-options side="end">
-          <ion-item-option color="danger">
-            <ion-icon slot="top" name="trash" (click)="deleteXcursion(xcursion.id)"></ion-icon>
-            Deletar
+          <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)'>
+            <ion-icon slot="top"></ion-icon>
+            Excluir
           </ion-item-option>
 
           <ion-item-option button [routerLink]="['/detail', xcursion.id]">

@@ -58,6 +58,4 @@ export class XcursionService {
   deleteXcursion(id: string) {
     return this.xcursionsCollection.doc<Xcursion>(id).delete();
   }
-
-  
 }

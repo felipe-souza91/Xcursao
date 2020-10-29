@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GaleriaFotosPageRoutingModule } from './galeria-fotos-routing.module';
+import { FavoritosPageRoutingModule } from './favoritos-routing.module';
 
-import { GaleriaFotosPage } from './galeria-fotos.page';
+import { FavoritosPage } from './favoritos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GaleriaFotosPageRoutingModule
+    FavoritosPageRoutingModule
   ],
-  declarations: [GaleriaFotosPage]
+  declarations: [FavoritosPage]
 })
-export class GaleriaFotosPageModule {}
+export class FavoritosPageModule {}

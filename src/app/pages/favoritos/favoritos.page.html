@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meus favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor="let favorito of favoritos" >
+    <ion-col>
+    <img src = {{favorito.imagem}} height="30">
+  </ion-col>
+  <ion-col>
+    <p><strong> Xcursão:</strong>{{favorito.nome}} </p>
+  </ion-col>
+  <ion-col size="3">
+    <img class="del" src="assets/imagens/excluir.png" (click)="deletar(favorito.id)" height="30">
+  </ion-col>
+  </ion-item>
+</ion-list>
+</ion-content>
+<div class="rodape">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/imagens/voltar.svg" width="30" height="30" [routerLink]="['/home']" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

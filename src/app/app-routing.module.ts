@@ -38,18 +38,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/gps/gps.module').then( m => m.GpsPageModule)
   },
   
-  {
-    path: 'galeria-fotos',
-    loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
-  },
 
-  {
-    path: 'galeria-fotos/:id',
-    loadChildren: () => import('./pages/galeria-fotos/galeria-fotos.module').then( m => m.GaleriaFotosPageModule)
-  },
   {
     path: 'addphoto',
     loadChildren: () => import('./pages/addphoto/addphoto.module').then( m => m.AddphotoPageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
+
+  {
+    path: 'favoritos/:id',
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
   },
 
 

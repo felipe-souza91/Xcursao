@@ -75,6 +75,7 @@ export class HomePage implements OnInit {
 
   async deleteXcursion(id: string) {
     try {
+     
       await this.xcursionsService.deleteXcursion(id);
     } catch (error) {
       this.presentToast("Erro ao deletar");
