@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 
@@ -26,6 +27,8 @@ export class HomePage implements OnInit {
   private loading: any;
   private user: User = {};
   private search: string;
+  public email: string;
+  public xcursion: Xcursion;
 
 
   constructor(
@@ -33,28 +36,40 @@ export class HomePage implements OnInit {
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private activeRoute: ActivatedRoute,
+    private router: Router
 
   ) {
-
+    this.email = this.activeRoute.snapshot.params['locs'];
     this.userSubscription = this.authService.getUsers().subscribe(data => {
       this.users = data;
     });
     
-    this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal().subscribe(data => {
+    this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
       this.xcursions = data;
       });
     
   }
   ngOnInit() {
   }
+  async home(){
+    await this.router.navigate(['/home', {locs: this.email}]);
+
+  }
+
+  async detailcursion(){
+    await this.router.navigate(['/detailscursion', {locs: this.email}]);
+  }
   searchChanged(){
+   
     if(this.search.length > 0){
       this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search).subscribe(data => {
         this.xcursions = data;
         });
     }else{
-      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal().subscribe(data => {
+     
+      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
         });
     }
@@ -62,6 +77,13 @@ export class HomePage implements OnInit {
   
   ngOnDestroy() {
     this.xcursionsSubscription.unsubscribe();
+  }
+
+  async detail(){
+    await this.router.navigate(['/detail', {locs: this.email}]);
+  }
+  async favoritos(){
+    await this.router.navigate(['/favoritos', {locs: this.email}]);
   }
 
   async logout() {

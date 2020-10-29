@@ -1,10 +1,11 @@
+import { async } from '@angular/core/testing';
 import { FavoritoService } from './../../services/favorito.service';
 import { Component, OnInit } from '@angular/core';
 import { Xcursion } from 'src/app/interfaces/xcursion';
 import { Subscription } from 'rxjs';
 import { XcursionService } from 'src/app/services/xcursion.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { computeStackId } from '@ionic/angular/dist/directives/navigation/stack-utils';
 
 
@@ -26,17 +27,22 @@ export class DetailscursionPage implements OnInit {
     private xcursionsService: XcursionService,
     private authService: AuthService,
     private activeRoute: ActivatedRoute,
-    private favoritoService: FavoritoService
+    private favoritoService: FavoritoService, 
+    private router: Router
     
-  ) {  this.xcursionId = this.activeRoute.snapshot.params['id'];
+  ) {  
+  this.xcursionId = this.activeRoute.snapshot.params['id'];
     
   if (this.xcursionId) this.loadXvision(); }
 
   ngOnInit(){}
   
   ngOndestroy() {
+  }
 
-    if (this.xcursionSubscription) this.xcursionsService.getXcursionsTotal().subscribe();
+   async voltar(){
+
+   await  this.router.navigate(['/home', {locs: this.xcursion.email}]);
   }
 
   loadXvision() {
@@ -49,6 +55,8 @@ export class DetailscursionPage implements OnInit {
 
     try {
     await this.favoritoService.addFavorito(this.xcursion);
+    await  this.router.navigate(['/favoritos', {locs: this.xcursion.email}]);
+
 console.log("Adicionado");
 
     } catch (erro) {

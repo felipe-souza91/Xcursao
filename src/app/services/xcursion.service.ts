@@ -31,9 +31,15 @@ export class XcursionService {
       })
     )
   }
+ 
+
   
-  getXcursionsTotal() {
-    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
+  getXcursionsTotal(email:string) {
+
+    if(email != null){
+
+    
+    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('email', '==', email));
     return this.xcursionsCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -44,7 +50,23 @@ export class XcursionService {
         });
       })
     )
+    }else{
+      this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
+    return this.xcursionsCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+         
+          return { id, ...data };
+        });
+      })
+    )
+
+    }
   }
+
+ 
   
   addXcursion(xcursion: Xcursion) {
     return this.xcursionsCollection.add(xcursion);

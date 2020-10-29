@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
     try {
       await this.authService.login(this.userLogin);
-      await this.router.navigate(['home']);
+      await this.router.navigate(['/home', {locs: this.userLogin.email}]);
     } catch (error) {
       let message: string;
       switch (error.code) {
@@ -82,6 +82,7 @@ export class LoginPage implements OnInit {
       //delete newUserObject.email;
       //delete newUserObject.password;
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
+       await this.router.navigate(['/home', {locs: this.userLogin.email}]);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
     } catch (error) {
       let message: string;

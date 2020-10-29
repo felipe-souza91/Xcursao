@@ -2,7 +2,7 @@
   <label>
     <h1>Encontre suas viagens aqui e divirta-se!!!</h1>
     <p style = 'color: #ffffff; margin-left:30px;'>
-    <img src="assets/imagens/favorita.png"  routerLink="/favoritos" height="30"/>
+    <img src="assets/imagens/favorita.png"  (click)="favoritos()" height="30"/>
     Meus favoritos</p>
   
   </label>
@@ -34,7 +34,7 @@
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
 
-        <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
+        <ion-item button [routerLink]="['/detailscursion', xcursion.id]" >
           <ion-label>
             <h2><strong>{{xcursion.nome}}</strong></h2> <br>
             <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
@@ -55,7 +55,7 @@
 
           <ion-item-option button [routerLink]="['/detail', xcursion.id]">
             <ion-icon slot="top"></ion-icon>
-            Aterar
+            Alterar
           </ion-item-option>
 
           <ion-item-option color="success" button routerLink='/addphoto'>
@@ -81,11 +81,11 @@
         </ion-col>
 
         <ion-col size="2">
-          <img src="assets/imagens/home.svg" [routerLink]="['/home']" width="40" height="40">
+          <img src="assets/imagens/home.svg" (click)="home()" width="40" height="40">
         </ion-col>
 
         <ion-col size="2">
-          <img src="assets/imagens/add.svg" routerLink="/detail" width="40" height="40">
+          <img src="assets/imagens/add.svg"  (click)="detail()" width="40" height="40">
         </ion-col>
 
         

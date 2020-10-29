@@ -19,7 +19,8 @@ export class FavoritoService {
     this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos');
    }
 
-   getFavoritos() {
+   getFavoritos(email: string) {
+    this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos', ref => ref.where('email', '==', email));
     return this.favoritaCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {

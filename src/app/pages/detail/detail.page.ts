@@ -1,7 +1,7 @@
 import { AngularFireModule } from '@angular/fire';
 import { async } from '@angular/core/testing';
 import { XcursionService } from 'src/app/services/xcursion.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service_org';
 import { LoadingController, ToastController, NavController, Platform } from '@ionic/angular';
 import { Xcursion } from './../../interfaces/xcursion';
@@ -28,10 +28,12 @@ export class DetailPage implements OnInit {
   private xcursion: Xcursion = {};
   private loading: any;
   private xcursionId: string = null;
+  private email: string = null;
   private xcursionSubscription: Subscription;
 
 
   constructor(
+    private router: Router,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private authService: AuthService,
@@ -43,24 +45,31 @@ export class DetailPage implements OnInit {
     private file: File,
     private afStorage: AngularFireStorage,
     private afa: AngularFireAuth,
-    private afs: AngularFirestore
-
-
+    private afs: AngularFirestore,
+    
+    
   ) {
+   
     this.xcursionId = this.activeRoute.snapshot.params['id'];
-
+    this.email = this.activeRoute.snapshot.params['locs'];
+    this.xcursion.email = this.email;
     if (this.xcursionId) this.loadXvision();
   }
 
   ngOnInit() { }
 
   ngOndestroy() {
-    if (this.xcursionSubscription) this.xcursionService.getXcursionsTotal().subscribe();
+    
   }
   loadXvision() {
     this.xcursionSubscription = this.xcursionService.getXcursion(this.xcursionId).subscribe(data => {
       this.xcursion = data;
     });
+
+  }
+
+  Voltar(){
+    this.router.navigate(['/home', {locs: this.xcursion.email}]);
 
   }
 
@@ -114,7 +123,7 @@ export class DetailPage implements OnInit {
         await this.xcursionService.updateXcursion(this.xcursionId, this.xcursion);
         await this.loading.dismiss();
 
-        this.navCtrl.navigateBack('/home');
+        this.router.navigate(['/home',{locs: this.xcursion.email}]);
       } catch (erro) {
 
         this.presentToast("Erro ao tentar salvar");
@@ -132,7 +141,7 @@ export class DetailPage implements OnInit {
         
         await this.loading.dismiss();
 
-        this.navCtrl.navigateBack('/home');
+        this.router.navigate(['/home', {locs: this.email}]);
       } catch (erro) {
 
         this.presentToast("Erro ao tentar salvar");
@@ -156,4 +165,3 @@ export class DetailPage implements OnInit {
 
 
 }
-//Página programado por thiago, foi adicionad rotas e metodos para funcionar o formulario detail.
