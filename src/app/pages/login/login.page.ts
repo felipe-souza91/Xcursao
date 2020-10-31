@@ -82,8 +82,9 @@ export class LoginPage implements OnInit {
       //delete newUserObject.email;
       //delete newUserObject.password;
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
-       await this.router.navigate(['/home', {locs: this.userLogin.email}]);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
+      await this.router.navigate(['/home', {locs: this.userLogin.email}]);
+      this.loading.dismiss();
     } catch (error) {
       let message: string;
       console.error(error.code);

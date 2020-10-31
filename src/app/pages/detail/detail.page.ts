@@ -121,26 +121,18 @@ export class DetailPage implements OnInit {
 
       try {
         await this.xcursionService.updateXcursion(this.xcursionId, this.xcursion);
-        await this.loading.dismiss();
-
+         this.loading.dismiss();
         this.router.navigate(['/home',{locs: this.xcursion.email}]);
       } catch (erro) {
-
         this.presentToast("Erro ao tentar salvar");
         this.loading.dismiss();
       }
-
     } else {
       this.xcursion.data = new Date().getTime();
-
       try {
         const newUserObject = Object.assign({}, this.xcursion);
-
-       
         await this.xcursionService.addXcursion(this.xcursion);
-        
         await this.loading.dismiss();
-
         this.router.navigate(['/home', {locs: this.email}]);
       } catch (erro) {
 

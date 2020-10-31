@@ -56,6 +56,15 @@ const routes: Routes = [
     path: 'favoritos/:id',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
   },
+  {
+    path: 'alterar-login',
+    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then( m => m.AlterarLoginPageModule)
+  },
+
+  {
+    path: 'alterar-login/:id',
+    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then( m => m.AlterarLoginPageModule)
+  },
 
 
 ];

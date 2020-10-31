@@ -1,3 +1,4 @@
+import { Alterlogin } from 'src/app/interfaces/alterlogin';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -21,19 +22,23 @@ import { User } from 'src/app/interfaces/user';
 export class HomePage implements OnInit {
 
   private xcursions = new Array<Xcursion>();
+  private alterlogins = new Array<Alterlogin>();
   private users = new Array<User>();
   private xcursionsSubscription: Subscription;
   private userSubscription: Subscription;
+  private alterSubscription: Subscription;
   private loading: any;
   private user: User = {};
   private search: string;
   public email: string;
-  public xcursion: Xcursion;
+
+
 
 
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
+    private alerloginServices: AuthService,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private afs: AngularFirestore,
@@ -42,48 +47,55 @@ export class HomePage implements OnInit {
 
   ) {
     this.email = this.activeRoute.snapshot.params['locs'];
-    this.userSubscription = this.authService.getUsers().subscribe(data => {
-      this.users = data;
-    });
-    
-    this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
-      this.xcursions = data;
+
+    if(this.email == null){
+      this.logout();
+    }else{
+      this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
+        this.users = data;
       });
+      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+        this.xcursions = data;
+      });
+    }
     
+   
   }
   ngOnInit() {
   }
-  async home(){
-    await this.router.navigate(['/home', {locs: this.email}]);
-
+  async home() {
+    await this.router.navigate(['/home', { locs: this.email }]);
+  }
+  async alterlogin() {
+    await this.router.navigate(['/alterar-login', { locs: this.email }]);
   }
 
-  async detailcursion(){
-    await this.router.navigate(['/detailscursion', {locs: this.email}]);
+  async detailcursion() {
+    await this.router.navigate(['/detailscursion', { locs: this.email }]);
   }
-  searchChanged(){
-   
-    if(this.search.length > 0){
+  searchChanged() {
+
+    if (this.search.length > 0) {
       this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search).subscribe(data => {
         this.xcursions = data;
-        });
-    }else{
-     
+      });
+    } else {
+
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
-        });
+      });
     }
   }
-  
+
   ngOnDestroy() {
     this.xcursionsSubscription.unsubscribe();
   }
 
-  async detail(){
-    await this.router.navigate(['/detail', {locs: this.email}]);
+  async detail() {
+    await this.router.navigate(['/detail', { locs: this.email }]);
   }
-  async favoritos(){
-    await this.router.navigate(['/favoritos', {locs: this.email}]);
+  async favoritos() {
+    await this.router.navigate(['/favoritos', { locs: this.email }]);
   }
 
   async logout() {
@@ -97,7 +109,7 @@ export class HomePage implements OnInit {
 
   async deleteXcursion(id: string) {
     try {
-     
+
       await this.xcursionsService.deleteXcursion(id);
     } catch (error) {
       this.presentToast("Erro ao deletar");

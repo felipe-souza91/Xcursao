@@ -57,7 +57,6 @@
             <ion-icon slot="top"></ion-icon>
             Alterar
           </ion-item-option>
-
           <ion-item-option color="success" button routerLink='/addphoto'>
             <ion-icon slot="top"></ion-icon>
             <img src="assets/imagens/fotos.png" height="70">
@@ -88,7 +87,9 @@
           <img src="assets/imagens/add.svg"  (click)="detail()" width="40" height="40">
         </ion-col>
 
-        
+        <ion-col size="2" *ngFor="let user of users">
+          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]"  height="40">
+        </ion-col>
 
       </ion-item-sliding>
     </ion-row>

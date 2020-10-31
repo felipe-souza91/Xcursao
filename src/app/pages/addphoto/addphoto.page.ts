@@ -16,9 +16,7 @@ export class AddphotoPage implements OnInit {
   constructor(
     public camera: Camera,
     public file: File
-    ) { 
-
-    }
+    ) { }
     TakePhotos(){
       var option:CameraOptions={
         quality:100,
