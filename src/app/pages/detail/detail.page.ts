@@ -30,7 +30,8 @@ export class DetailPage implements OnInit {
   private xcursionId: string = null;
   private email: string = null;
   private xcursionSubscription: Subscription;
-
+  private tituloButton: string = '';
+  public bloq: boolean = true;
 
   constructor(
     private router: Router,
@@ -46,6 +47,7 @@ export class DetailPage implements OnInit {
     private afStorage: AngularFireStorage,
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
+  
     
     
   ) {
@@ -53,8 +55,17 @@ export class DetailPage implements OnInit {
     this.xcursionId = this.activeRoute.snapshot.params['id'];
     this.email = this.activeRoute.snapshot.params['locs'];
     this.xcursion.email = this.email;
-    if (this.xcursionId) this.loadXvision();
+    if (this.xcursionId){
+      this.loadXvision();
+      this.tituloButton = 'Alterar';
+  }  else{
+    this.tituloButton = 'Adicionar';
   }
+
+  this.xcursion.qt_vagas = 0;
+ 
+  
+}
 
   ngOnInit() { }
 
@@ -70,8 +81,9 @@ export class DetailPage implements OnInit {
 
   Voltar(){
     this.router.navigate(['/home', {locs: this.xcursion.email}]);
-
   }
+
+  
 
   
   async openGalery() {

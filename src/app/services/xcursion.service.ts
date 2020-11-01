@@ -16,8 +16,10 @@ export class XcursionService {
 
   constructor(
     private afs: AngularFirestore) {
-    
+
+      this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
   }
+  
 
   getXcursions(search: string) {
     this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('nome', '==', search));
@@ -31,43 +33,50 @@ export class XcursionService {
       })
     )
   }
- 
 
-  
-  getXcursionsTotal(email:string) {
 
-    if(email != null){
 
-    
-    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('email', '==', email));
-    return this.xcursionsCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-         
-          return { id, ...data };
-        });
-      })
-    )
-    }else{
+  getXcursionsTotal(email: string) {
+
+    if (email != null) {
+      this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('email', '==', email));
+      return this.xcursionsCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+
+            return { id, ...data };
+          });
+        })
+      )
+    } else {
       this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
-    return this.xcursionsCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-         
-          return { id, ...data };
-        });
-      })
-    )
-
+      return this.xcursionsCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      )
     }
   }
 
- 
-  
+  getoutrasXcursions() {
+    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions');
+    return this.xcursionsCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+
+          return { id, ...data };
+        });
+      })
+    )
+  }
   addXcursion(xcursion: Xcursion) {
     return this.xcursionsCollection.add(xcursion);
   }

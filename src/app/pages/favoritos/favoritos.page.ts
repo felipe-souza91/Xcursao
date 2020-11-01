@@ -38,12 +38,14 @@ export class FavoritosPage implements OnInit {
   }
   loadXvision() {
   }
+  
 
   ngOnInit() {
   }
   voltar(){
     this.router.navigate(['/home', {locs: this.email}]);
   }
+  
 
 deletar(id:string){
 this.favoritaService.deleteFavorito(id);

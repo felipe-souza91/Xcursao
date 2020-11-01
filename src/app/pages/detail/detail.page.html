@@ -1,14 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    
-    <ion-title class="title">Adicionar uma excursão</ion-title>
+    <ion-title class="title">{{tituloButton}} uma excursão</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding">
   <ion-list>
     <ion-item>
-      <ion-input type="text" [(ngModel)]="xcursion.email" placeholder="Email"></ion-input>
+      <ion-input type="text" [(ngModel)]="xcursion.email" placeholder="Email" disabled></ion-input>
     </ion-item>
   
     <ion-item>
@@ -33,24 +31,19 @@
       <ion-input type="date" [(ngModel)]="xcursion.dt_criacao">
       </ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label>Volta:</ion-label>
       <ion-input type="date" [(ngModel)]="xcursion.tempoRetorno" >
       </ion-input>
-    </ion-item>
-
-
+    </ion-item> 
     <ion-item>
-      <ion-input type="text" [(ngModel)]="xcursion.qt_vagas" placeholder="Qtde viagens"></ion-input>
+      <ion-input type="text" [(ngModel)]="xcursion.qt_vagas" placeholder="Qtde de vagas"></ion-input>
     </ion-item>
-
   </ion-list>
 </ion-content>
 <ion-footer>
   <ion-toolbar >
-    <ion-button  (click)="saveXcursion()" expand="block">Salvar</ion-button>
+    <ion-button  (click)="saveXcursion()" expand="block" [disabled] ="xcursion.qt_vagas == 0">{{tituloButton}}</ion-button>
     <ion-button   (click)="Voltar()" expand="block">Voltar</ion-button>
   </ion-toolbar>
 </ion-footer>
-<!----Página programado por Thiago. Foi adicionado um formulario de lista de viagens-->

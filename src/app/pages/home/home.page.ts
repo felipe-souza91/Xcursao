@@ -31,8 +31,8 @@ export class HomePage implements OnInit {
   private user: User = {};
   private search: string;
   public email: string;
-
-
+  public outrasViagens = false;
+  private bloq: boolean;
 
 
   constructor(
@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
     this.email = this.activeRoute.snapshot.params['locs'];
 
     if(this.email == null){
-      this.logout();
+      //this.logout();
     }else{
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
         this.users = data;
@@ -57,11 +57,28 @@ export class HomePage implements OnInit {
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
       });
-    }
-    
-   
+    }  
+  }
+  acionar(){
+    if(this.outrasViagens){
+    this.outrasViagens = false;
+    this.bloq = true;
+    this.xcursionsSubscription = this.xcursionsService. getoutrasXcursions().subscribe(data => {
+      this.xcursions = data;
+    });
+    }else{
+      this.outrasViagens = true;
+      this.bloq = false;
+      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+        this.xcursions = data;
+        });
+      } 
   }
   ngOnInit() {
+  }
+
+   async participar(){
+    await this.router.navigate(['/participar', { locs: this.email }]);
   }
   async home() {
     await this.router.navigate(['/home', { locs: this.email }]);
@@ -109,8 +126,7 @@ export class HomePage implements OnInit {
 
   async deleteXcursion(id: string) {
     try {
-
-      await this.xcursionsService.deleteXcursion(id);
+     await this.xcursionsService.deleteXcursion(id);
     } catch (error) {
       this.presentToast("Erro ao deletar");
     }

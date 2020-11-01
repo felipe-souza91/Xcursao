@@ -9,19 +9,12 @@
       <ion-item>
 <ion-input type="nome" [(ngModel)]="alterlogin.nome_criador" placeholder="Email"></ion-input>
 </ion-item>
-
 <ion-item>
-  <ion-input type="texto" [(ngModel)]="alterlogin.dt_nasc" placeholder="Data nascimento"></ion-input>
-  </ion-item>
-
-
-
-<ion-item>
-<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email"></ion-input>
+<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email" [disabled]="true"></ion-input>
 </ion-item>
 
 <ion-item>
-  <ion-input type="text" [(ngModel)]="alterlogin.password" placeholder="Senha"></ion-input>
+  <ion-input type="text" [(ngModel)]="alterlogin.password" placeholder="Senha" [disabled]="true"></ion-input>
   </ion-item>
 </ion-list>
   <ion-button (click)="alterarlogin()">Alterar</ion-button>

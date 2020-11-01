@@ -1,15 +1,21 @@
 <div #map class="top">
   <label>
-    <h1>Encontre suas viagens aqui e divirta-se!!!</h1>
+    <h5>Encontre suas viagens aqui e divirta-se!!!</h5>
+    <div *ngFor="let user of users">
+    <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
+  </div>
     <p style = 'color: #ffffff; margin-left:30px;'>
     <img src="assets/imagens/favorita.png"  (click)="favoritos()" height="30"/>
-    Meus favoritos</p>
-  
+    Meus favoritos   
+
+    <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
+     <ion-label>  Outras viagens</ion-label>
+  </p> 
+   
   </label>
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
 </div>
-
 <ion-content>
   <div class="container">
     <ion-list *ngIf="!xcursions.length">
@@ -48,16 +54,16 @@
         </ion-item>
 
         <ion-item-options side="end">
-          <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)'>
+          <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)' [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             Excluir
           </ion-item-option>
 
-          <ion-item-option button [routerLink]="['/detail', xcursion.id]">
+          <ion-item-option button [routerLink]="['/detail', xcursion.id]"  [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             Alterar
           </ion-item-option>
-          <ion-item-option color="success" button routerLink='/addphoto'>
+          <ion-item-option color="success" button routerLink='/addphoto'  [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             <img src="assets/imagens/fotos.png" height="70">
           </ion-item-option>
@@ -90,7 +96,9 @@
         <ion-col size="2" *ngFor="let user of users">
           <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]"  height="40">
         </ion-col>
-
+        <ion-col size="2">
+          <img src="assets/imagens/participacao.png"  button (click)= "participar()" width="40" height="40">
+        </ion-col>
       </ion-item-sliding>
     </ion-row>
   </ion-grid>

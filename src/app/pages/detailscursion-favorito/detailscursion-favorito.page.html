@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button text="Voltar"></ion-back-button>
+  </ion-buttons>
+  <ion-title> Detalhes da Xcursão</ion-title>
+</ion-toolbar>
+</ion-header>
+<div class="img">
+<img [src]="favorito.imagem" width="100%" height="200px">
+</div>
+
+<ion-content>
+<ion-item>
+  <h3><strong> Local da Excursão:</strong> {{favorito.nome}}</h3>
+</ion-item>
+
+<ion-item>
+  <h3><strong> Detalhes:</strong> {{favorito.descricao}}</h3>
+</ion-item>
+
+<ion-item>
+  <h3><strong> Valor em Dinheiro R$:</strong> {{favorito.valor}}</h3>
+</ion-item>
+
+<ion-item>
+  <h3><strong> Data partida:</strong> {{favorito.dt_criacao}}</h3>
+</ion-item>
+
+<ion-item>
+  <h3><strong> Data do retorno:</strong> {{favorito.tempoRetorno}}</h3>
+</ion-item>
+
+<ion-item>
+  <h3><strong> Qtde de vagas:</strong> {{favorito.qt_vagas}}</h3>
+</ion-item>
+</ion-content>
+
+<div class="rodape">
+<ion-grid>
+  <ion-row>
+   
+  </ion-row>
+</ion-grid>
+</div>
+
+
+  

@@ -65,6 +65,19 @@ const routes: Routes = [
     path: 'alterar-login/:id',
     loadChildren: () => import('./pages/alterar-login/alterar-login.module').then( m => m.AlterarLoginPageModule)
   },
+  {
+    path: 'detailscursion-favorito',
+    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then( m => m.DetailscursionFavoritoPageModule)
+  },
+
+  {
+    path: 'detailscursion-favorito/:id',
+    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then( m => m.DetailscursionFavoritoPageModule)
+  },
+  {
+    path: 'participar',
+    loadChildren: () => import('./pages/participar/participar.module').then( m => m.ParticiparPageModule)
+  },
 
 
 ];

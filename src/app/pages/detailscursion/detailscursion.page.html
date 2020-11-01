@@ -6,7 +6,7 @@
 </ion-header>
 
 <div class="img">
-  <img [src]="xcursion.imagem" width="100%" height="200px">
+  <img [src]="xcursion.imagem" width="100%" height="150px">
 </div>
 
 <ion-content>
@@ -35,7 +35,7 @@
     <h3><strong> Qtde de vagas:</strong> {{xcursion.qt_vagas}}</h3>
   </ion-item>
 </ion-content>
-
+  <ion-button (click)= "participar()">Participar</ion-button>
 <div class="rodape">
   <ion-grid>
     <ion-row>

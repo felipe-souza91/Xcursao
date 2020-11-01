@@ -16,8 +16,13 @@ export class FavoritoService {
     private afs: AngularFirestore
     ) {
 
-    this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos');
+   
    }
+
+   getfavorito(id: string) {
+    this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos');
+    return this.favoritaCollection.doc<Favoritos>(id).valueChanges();
+  }
 
    getFavoritos(email: string) {
     this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos', ref => ref.where('email', '==', email));
@@ -32,7 +37,7 @@ export class FavoritoService {
     )
    }
    addFavorito(xcursion: Favoritos){
- console.log(xcursion);
+
     return this.favoritaCollection.add(xcursion);
 
    }

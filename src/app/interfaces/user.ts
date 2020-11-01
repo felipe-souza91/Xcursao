@@ -3,7 +3,6 @@ export interface User {
     email?:string;
     password?:string;
     nome_criador?: string;
-    dt_nasc?: string;
     data?: number;
   
 }

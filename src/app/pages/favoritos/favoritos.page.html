@@ -6,16 +6,19 @@
 
 <ion-content>
 <ion-list>
-  <ion-item *ngFor="let favorito of favoritos" >
+  <ion-item *ngFor="let favorito of favoritos">
+  <ion-item button [routerLink]="['/detailscursion-favorito', favorito.id]">
     <ion-col>
     <img src = {{favorito.imagem}} height="30">
   </ion-col>
   <ion-col>
-    <p><strong> Xcursão:</strong>{{favorito.nome}} </p>
+    <p><strong> Xcursão:</strong>{{favorito.nome}}</p>
   </ion-col>
+</ion-item>
   <ion-col size="3">
     <img class="del" src="assets/imagens/excluir.png" (click)="deletar(favorito.id)" height="30">
   </ion-col>
+
   </ion-item>
 </ion-list>
 </ion-content>

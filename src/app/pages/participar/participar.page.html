@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Minhas participações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list *ngFor = "let participar of participarem">
+<ion-item>
+<ion-col>
+<p><strong>Local: </strong> {{participar.nome}}</p>
+</ion-col>
+
+<ion-col>
+  <p><strong>Ida: </strong> {{participar.dt_criacao}}</p>
+  </ion-col>
+
+  <ion-col>
+    <p><strong>Volta: </strong> {{participar.tempoRetorno}}</p>
+    </ion-col>
+  
+    <ion-col>
+      <p> <strong>  Valor R$:</strong> {{participar.valor}}</p>
+      </ion-col>
+</ion-item>
+</ion-list>
+
+</ion-content>
+
+<div class="rodape">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/imagens/voltar.svg" width="30" height="30" button (click)="voltar()" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
