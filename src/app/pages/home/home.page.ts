@@ -116,7 +116,6 @@ export class HomePage implements OnInit {
   }
 
   async logout() {
-    console.log('login deslogado');
     try {
       await this.authService.logout();
     } catch (error) {

@@ -63,33 +63,35 @@ export class LoginPage implements OnInit {
       let message: string;
       switch (error.code) {
         case 'auth/email-already-in-use':
-          message = 'Email já Cadastrado!';
+          message = 'Email já Cadastrado';
           break;
         case 'auth/invalid-email':
-          message = 'Email Invalido!';
+          message = 'Email Invalido';
           break;
       }
+
       this.presentToast(error.message);
     } finally {
       this.loading.dismiss();
     }
   }
+
   async register() {
-    await this.presentLoading();
+    
     try {
       const newUserObject = Object.assign({}, this.userRegister);
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
-      await this.router.navigate(['/login']);
+      await this.router.navigate(['/home']);
     } catch (error) {
       let message: string;
       console.error(error.code);
       switch (error.code) {
         case 'auth/email-already-in-use':
-          message = 'Email já Cadastrado!';
+          message = 'Email ja Cadastrado';
           break;
         case 'auth/invalid-email':
-          message = 'Email Invalido!';
+          message = 'Email Invalido';
           break;
       }
 

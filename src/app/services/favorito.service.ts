@@ -16,11 +16,11 @@ export class FavoritoService {
     private afs: AngularFirestore
     ) {
 
-   
+      this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos');
    }
 
    getfavorito(id: string) {
-    this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos');
+    
     return this.favoritaCollection.doc<Favoritos>(id).valueChanges();
   }
 

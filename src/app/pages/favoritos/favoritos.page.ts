@@ -42,9 +42,7 @@ export class FavoritosPage implements OnInit {
 
   ngOnInit() {
   }
-  voltar(){
-    this.router.navigate(['/home', {locs: this.email}]);
-  }
+
   
 
 deletar(id:string){

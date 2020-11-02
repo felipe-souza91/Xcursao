@@ -53,10 +53,7 @@ export class DetailscursionPage implements OnInit {
   ngOndestroy() {
   }
 
-  async voltar() {
-
-    await this.router.navigate(['/home', { locs: this.xcursion.email }]);
-  }
+  
 
   async participar() {
     await this.presentLoading();
@@ -72,20 +69,24 @@ export class DetailscursionPage implements OnInit {
       console.log("Erro ao parcicipar", error);
     } 
   }
+
+
   loadXvision() {
     this.xcursionSubscription = this.xcursionsService.getXcursion(this.xcursionId).subscribe(data => {
       this.xcursion = data;
     });
-
   }
   async saveFavoritos() {
     try {
-     
+      console.log(this.xcursion);
       await this.favoritoService.addFavorito(this.xcursion);
-      await this.router.navigate(['/favoritos', { locs: this.xcursion.email }])
+      await this.router.navigate(['/favoritos', { locs: this.xcursion.email }]);
+
       console.log("Adicionado");
+
     } catch (erro) {
       console.log('Erro');
+      console.log(this.xcursion);
 
     }
 
