@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class ParticiparPage implements OnInit {
  private participarem = new Array<Participar>();
  private participarSubscription: Subscription;
+ private participar: Participar={};
  private email: string = null;
  
   constructor(
@@ -25,7 +26,7 @@ export class ParticiparPage implements OnInit {
     this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
       this.participarem = data;
     });
-    console.log(this.email);
+   
   }
 
   ngOnInit() {
@@ -34,4 +35,13 @@ export class ParticiparPage implements OnInit {
     await this.router.navigate(['/home', { locs: this.email }]);
   }
 
+  deletar(id: any){
+    try{
+      this.participarService.deletarParticipacao(id);
+      console.log("deletado");
+    }catch(error){
+console.log(error);
+
+    }
+  }
 }

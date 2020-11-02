@@ -22,6 +22,9 @@
     <ion-col>
       <p> <strong>  Valor R$:</strong> {{participar.valor}}</p>
       </ion-col>
+      <ion-col>
+        <img src="assets/imagens/excluir.png" (click)="deletar(participar.id)" height="30">
+        </ion-col>
 </ion-item>
 </ion-list>
 
