@@ -10,31 +10,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./participar.page.scss'],
 })
 export class ParticiparPage implements OnInit {
- private participarem = new Array<Participar>();
- private participarSubscription: Subscription;
- private email: string = null;
- 
+  private participarem = new Array<Participar>();
+  private participarSubscription: Subscription;
+  private email: string = null;
+
   constructor(
     private participarService: ParticiparService,
-    private activeRoute: ActivatedRoute, 
+    private activeRoute: ActivatedRoute,
     private router: Router
-    ) 
-    { 
+  ) {
 
-      this.email = this.activeRoute.snapshot.params['locs']; 
+    this.email = this.activeRoute.snapshot.params['locs'];
     this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
       this.participarem = data;
     });
-    console.log(this.email);
   }
 
   ngOnInit() {
   }
-  
-  async deletar(id: string){
-    try{
-this.participarService.deletarParticipacao(id);
-    }catch(error){
+    voltar(){
+    this.router.navigate(['/home', {locs: this.email}]);
+  }
+
+  async deletar(id: string) {
+    try {
+      this.participarService.deletarParticipacao(id);
+    } catch (error) {
       console.log("Erro!");
     }
   }

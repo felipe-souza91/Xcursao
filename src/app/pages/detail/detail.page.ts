@@ -47,30 +47,27 @@ export class DetailPage implements OnInit {
     private afStorage: AngularFireStorage,
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
-  
-    
-    
+
+
+
   ) {
-   
+
     this.xcursionId = this.activeRoute.snapshot.params['id'];
     this.email = this.activeRoute.snapshot.params['locs'];
     this.xcursion.email = this.email;
-    if (this.xcursionId){
+    if (this.xcursionId) {
       this.loadXvision();
       this.tituloButton = 'Alterar';
-  }  else{
-    this.tituloButton = 'Adicionar';
+    } else {
+      this.tituloButton = 'Adicionar';
+    }
+    this.xcursion.qt_vagas = 0;
   }
-
-  this.xcursion.qt_vagas = 0;
- 
-  
-}
 
   ngOnInit() { }
 
   ngOndestroy() {
-    
+
   }
   loadXvision() {
     this.xcursionSubscription = this.xcursionService.getXcursion(this.xcursionId).subscribe(data => {
@@ -79,13 +76,13 @@ export class DetailPage implements OnInit {
 
   }
 
-  Voltar(){
-    this.router.navigate(['/home', {locs: this.xcursion.email}]);
+  Voltar() {
+    this.router.navigate(['/home', { locs: this.xcursion.email }]);
   }
 
-  
 
-  
+
+
   async openGalery() {
 
     const options: CameraOptions = {
@@ -123,7 +120,7 @@ export class DetailPage implements OnInit {
 
     task.snapshotChanges().pipe(
       finalize(() => this.downloadUrl = ref.getDownloadURL())
-      ).subscribe();
+    ).subscribe();
   }
 
   async saveXcursion() {
@@ -133,8 +130,8 @@ export class DetailPage implements OnInit {
 
       try {
         await this.xcursionService.updateXcursion(this.xcursionId, this.xcursion);
-         this.loading.dismiss();
-        this.router.navigate(['/home',{locs: this.xcursion.email}]);
+        this.loading.dismiss();
+        this.router.navigate(['/home', { locs: this.xcursion.email }]);
       } catch (erro) {
         this.presentToast("Erro ao tentar salvar");
         this.loading.dismiss();
@@ -145,7 +142,7 @@ export class DetailPage implements OnInit {
         const newUserObject = Object.assign({}, this.xcursion);
         await this.xcursionService.addXcursion(this.xcursion);
         await this.loading.dismiss();
-        this.router.navigate(['/home', {locs: this.email}]);
+        this.router.navigate(['/home', { locs: this.email }]);
       } catch (erro) {
 
         this.presentToast("Erro ao tentar salvar");

@@ -2,16 +2,16 @@
   <label>
     <h5>Encontre suas viagens aqui e divirta-se!!!</h5>
     <div *ngFor="let user of users">
-    <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
-  </div>
-    <p style = 'color: #ffffff; margin-left:30px;'>
-    <img src="assets/imagens/favorita.png"  (click)="favoritos()" height="30"/>
-    Meus favoritos   
+      <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
+    </div>
+    <p style='color: #ffffff; margin-left:30px;'>
+      <img src="assets/imagens/favorita.png" (click)="favoritos()" height="30" />
+      Meus favoritos
 
-    <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
-     <ion-label>  Outras viagens</ion-label>
-  </p> 
-   
+      <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
+      <ion-label> Outras viagens</ion-label>
+    </p>
+
   </label>
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
@@ -39,47 +39,47 @@
 
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
+        <ion-item size="2">
+          <img src="assets/imagens/busicon.png" (click)="participarXcursion(xcursion.id,xcursion.nome)" height="30">
+          <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="30">
+          <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
+            <ion-label>
+              <h2><strong>{{xcursion.nome}}</strong></h2> <br>
+              <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
+              <p> Data: {{xcursion.data | date : 'short'}}</p>
+            </ion-label>
+            <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$ {{xcursion.valor}}</ion-note>
 
-        <ion-item button [routerLink]="['/detailscursion', xcursion.id]" >
-          <ion-label>
-            <h2><strong>{{xcursion.nome}}</strong></h2> <br>
-            <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
-
-            <p> Data: {{xcursion.data | date : 'short'}}</p>
-
-
-          </ion-label>
-
-          <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$ {{xcursion.valor}}</ion-note>
+          </ion-item>
         </ion-item>
-
         <ion-item-options side="end">
           <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)' [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             Excluir
           </ion-item-option>
 
-          <ion-item-option button [routerLink]="['/detail', xcursion.id]"  [disabled]="bloq== true">
+          <ion-item-option button [routerLink]="['/detail', xcursion.id]" [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             Alterar
           </ion-item-option>
-          <ion-item-option color="success" button routerLink='/addphoto'  [disabled]="bloq== true">
+          <ion-item-option color="success" button (click)="galeryPhoto()" [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             <img src="assets/imagens/fotos.png" height="70">
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
+
     </ion-list>
   </div>
 </ion-content>
 <ion-footer>
   <ion-grid>
     <ion-row>
-      <ion-item-sliding >
-     
-       <ion-col size="2">
-        <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
-      </ion-col>
+      <ion-item-sliding>
+
+        <ion-col size="2">
+          <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
+        </ion-col>
 
         <ion-col size="2">
           <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
@@ -90,14 +90,14 @@
         </ion-col>
 
         <ion-col size="2">
-          <img src="assets/imagens/add.svg"  (click)="detail()" width="40" height="40">
+          <img src="assets/imagens/add.svg" (click)="detail()" width="40" height="40">
         </ion-col>
 
         <ion-col size="2" *ngFor="let user of users">
-          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]"  height="40">
+          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="40">
         </ion-col>
         <ion-col size="2">
-          <img src="assets/imagens/participacao.png"  button (click)= "participar()" width="40" height="40">
+          <img src="assets/imagens/participacao.png" button (click)="participar()" width="40" height="40">
         </ion-col>
       </ion-item-sliding>
     </ion-row>

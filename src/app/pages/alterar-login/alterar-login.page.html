@@ -10,11 +10,11 @@
 <ion-input type="nome" [(ngModel)]="alterlogin.nome_criador" placeholder="Email"></ion-input>
 </ion-item>
 <ion-item>
-<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email" [disabled]="true"></ion-input>
+<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email" [disabled]="false"></ion-input>
 </ion-item>
 
 <ion-item>
-  <ion-input type="text" [(ngModel)]="alterlogin.password" placeholder="Senha" [disabled]="true"></ion-input>
+  <ion-input type="text" [(ngModel)]="alterlogin.password" placeholder="Senha" [disabled]="false"></ion-input>
   </ion-item>
 </ion-list>
   <ion-button (click)="alterarlogin()">Alterar</ion-button>

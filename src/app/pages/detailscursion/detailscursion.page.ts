@@ -1,3 +1,5 @@
+import { FavoritosPage } from './../favoritos/favoritos.page';
+import { Favoritos } from './../../interfaces/favoritos';
 import { Participar } from './../../interfaces/participar';
 import { ParticiparService } from './../../services/participar.service';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
@@ -11,10 +13,6 @@ import { XcursionService } from 'src/app/services/xcursion.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
-
-
 @Component({
   selector: 'app-detailscursion',
   templateUrl: './detailscursion.page.html',
@@ -26,7 +24,9 @@ export class DetailscursionPage implements OnInit {
   private loading: any;
   private xcursion: Xcursion = {};
   private xcursionId: string = null;
- 
+  public email: string = null;
+  public favorito: FavoritosPage;
+
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
@@ -36,7 +36,8 @@ export class DetailscursionPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+
 
   ) {
     this.xcursionId = this.activeRoute.snapshot.params['id'];
@@ -46,54 +47,24 @@ export class DetailscursionPage implements OnInit {
     } else {
       this.loadXvision();
     }
+
   }
 
   ngOnInit() { }
 
   ngOndestroy() {
   }
-
   
-
-  async participar() {
-    await this.presentLoading();
-    let vaga: number = this.xcursion.qt_vagas - 1;
-    this.xcursion.qt_vagas = vaga;
-
-    try {
-      this.xcursionsService.updateXcursion(this.xcursionId, this.xcursion);
-       this.participarService.addParticipacao(this.xcursion);
-      this.loading.dismiss();
-      this.router.navigate(['/home',{locs: this.xcursion.email}]);
-    } catch (error) {
-      console.log("Erro ao parcicipar", error);
-    } 
-  }
-
-
+  
   loadXvision() {
     this.xcursionSubscription = this.xcursionsService.getXcursion(this.xcursionId).subscribe(data => {
       this.xcursion = data;
     });
   }
-  async saveFavoritos() {
-    try {
-      console.log(this.xcursion);
-      await this.favoritoService.addFavorito(this.xcursion);
-      await this.router.navigate(['/favoritos', { locs: this.xcursion.email }]);
 
-      console.log("Adicionado");
 
-    } catch (erro) {
-      console.log('Erro');
-      console.log(this.xcursion);
-
-    }
-
-  }
-
-  async  presentLoading() {
-    this.loading = await  this.loadingCtrl.create({ message: 'Por favor, aguarde...' });
+  async presentLoading() {
+    this.loading = await this.loadingCtrl.create({ message: 'Por favor, aguarde...' });
     return this.loading.present();
   }
 
@@ -102,7 +73,7 @@ export class DetailscursionPage implements OnInit {
     toast.present();
 
   }
-  
+
 
 }
 

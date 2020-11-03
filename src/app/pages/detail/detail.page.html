@@ -41,9 +41,13 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer>
-  <ion-toolbar >
-    <ion-button  (click)="saveXcursion()" expand="block" [disabled] ="xcursion.qt_vagas == 0">{{tituloButton}}</ion-button>
-    <ion-button   (click)="Voltar()" expand="block">Voltar</ion-button>
-  </ion-toolbar>
-</ion-footer>
+<div class="rodape">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button  (click)="saveXcursion()" expand="block" [disabled] ="xcursion.qt_vagas == 0">{{tituloButton}}</ion-button>
+        <ion-button   (click)="Voltar()" expand="block">Voltar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

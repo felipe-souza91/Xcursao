@@ -1,3 +1,4 @@
+import { DetailscursionPage } from './../detailscursion/detailscursion.page';
 import { Favoritos } from './../../interfaces/favoritos';
 import { FavoritoService } from './../../services/favorito.service';
 import { Xcursion } from './../../interfaces/xcursion';
@@ -5,6 +6,7 @@ import { XcursionService } from './../../services/xcursion.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-favoritos',
@@ -17,13 +19,15 @@ export class FavoritosPage implements OnInit {
   favoritaSubscription: Subscription;
   private xcursionId: string = null;
   private email: string = null;
-  private favorito: Favoritos = {};
-   
+  private favorito: DetailscursionPage;
+
+
   constructor(
     private activeRoute: ActivatedRoute,
     private favoritaService: FavoritoService,
     private router: Router
-    
+
+
   ) {
     this.xcursionId = this.activeRoute.snapshot.params['id'];
     this.email = this.activeRoute.snapshot.params['locs'];
@@ -31,23 +35,29 @@ export class FavoritosPage implements OnInit {
     if (this.xcursionId) {
 
       this.loadXvision();
-    } 
+    }
     this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
       this.favoritos = data;
-      });
+    });
   }
+
+
+  voltar(){
+    this.router.navigate(['/home', {locs: this.email}]);
+  }
+
   loadXvision() {
   }
-  
+
 
   ngOnInit() {
   }
 
-  
 
-deletar(id:string){
-this.favoritaService.deleteFavorito(id);
-console.log('deletado');
-}
+
+  deletar(id: string) {
+    this.favoritaService.deleteFavorito(id);
+    console.log('deletado');
+  }
 
 }

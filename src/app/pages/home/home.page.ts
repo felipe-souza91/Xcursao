@@ -1,7 +1,9 @@
+import { Xcursionlista } from './../../interfaces/xcursionlista';
+import { FavoritoService } from './../../services/favorito.service';
+
 import { Alterlogin } from 'src/app/interfaces/alterlogin';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-
 
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +13,7 @@ import { XcursionService } from 'src/app/services/xcursion.service';
 import { AuthService } from 'src/app/services/auth.service_org';
 import { __await } from 'tslib';
 import { User } from 'src/app/interfaces/user';
+import { ParticiparService } from 'src/app/services/participar.service';
 
 
 
@@ -27,6 +30,7 @@ export class HomePage implements OnInit {
   private xcursionsSubscription: Subscription;
   private userSubscription: Subscription;
   private alterSubscription: Subscription;
+  private favoritoSubscription: Subscription;
   private loading: any;
   private user: User = {};
   private search: string;
@@ -34,50 +38,104 @@ export class HomePage implements OnInit {
   public outrasViagens = false;
   private bloq: boolean;
 
+  private xcursion: Xcursion = {};
+  private xcursionlista: Xcursionlista = {};
+
+
 
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
+    private favoritoService: FavoritoService,
     private alerloginServices: AuthService,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private afs: AngularFirestore,
     private activeRoute: ActivatedRoute,
-    private router: Router
-
+    private router: Router,
+    private participarService: ParticiparService
   ) {
     this.email = this.activeRoute.snapshot.params['locs'];
 
-    if(this.email == null){
+    if (this.email == null) {
       this.logout();
-    }else{
+    } else {
+
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
         this.users = data;
+
       });
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
+
       });
-    }  
+    }
   }
-  acionar(){
-    if(this.outrasViagens){
-    this.outrasViagens = false;
-    this.bloq = true;
-    this.xcursionsSubscription = this.xcursionsService. getoutrasXcursions().subscribe(data => {
-      this.xcursions = data;
+async galeryPhoto(){
+  await this.router.navigate(['/addphoto', { locs: this.email }]);
+}
+  loadxcursion(xcursionId) {
+    this.xcursionsSubscription = this.xcursionsService.getXcursion(xcursionId).subscribe(data => {
+      this.xcursionlista = data;
     });
-    }else{
+  }
+  adicionarFavorito(xcursionId: string, xcursionNome: string) {
+
+    this.loadxcursion(xcursionId);
+
+    if (xcursionId == null) {
+      console.log('Não há Id');
+    } else {
+      if (this.xcursionlista.nome == xcursionNome) {
+        this.xcursionlista.nome = xcursionNome;
+        try {
+          this.xcursionlista.email = this.email;
+          this.favoritoService.addFavorito(this.xcursionlista);
+          this.router.navigate(['/favoritos', { locs: this.email }]);
+        } catch (error) {
+          console.log('Erro ao adicionar!');
+        }
+      }
+    }
+  }
+  async participarXcursion(xcursionId: string, xcursionNome: string) {
+   
+    this.loadxcursion(xcursionId);
+    if (this.xcursionlista == null) {
+      console.log("resultado null");
+    } else {
+      this.xcursionlista.email = this.email;
+      if (this.xcursionlista.nome == xcursionNome) {
+        this.xcursionlista.nome = xcursionNome;
+        try {
+          this.participarService.addParticipacao(this.xcursionlista);
+          this.router.navigate(['/participar', { locs: this.email }]);
+        } catch (error) {
+          console.log("Erro ao parcicipar");
+        }
+      }
+    }
+  }
+
+  acionar() {
+    if (this.outrasViagens) {
+      this.outrasViagens = false;
+      this.bloq = true;
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+        this.xcursions = data;
+      });
+    } else {
       this.outrasViagens = true;
       this.bloq = false;
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
-        });
-      } 
+      });
+    }
   }
   ngOnInit() {
   }
 
-   async participar(){
+  async participar() {
     await this.router.navigate(['/participar', { locs: this.email }]);
   }
   async home() {
@@ -92,15 +150,24 @@ export class HomePage implements OnInit {
   }
   searchChanged() {
 
-    if (this.search.length > 0) {
-      this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search).subscribe(data => {
+    if (this.bloq == true) {
+      this.xcursionsSubscription = this.xcursionsService.getListaxcursion(this.search).subscribe(data => {
         this.xcursions = data;
       });
     } else {
 
-      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
-        this.xcursions = data;
-      });
+
+
+      if (this.search.length > 0) {
+        this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search, this.email).subscribe(data => {
+          this.xcursions = data;
+        });
+      } else {
+
+        this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+          this.xcursions = data;
+        });
+      }
     }
   }
 
@@ -126,7 +193,7 @@ export class HomePage implements OnInit {
 
   async deleteXcursion(id: string) {
     try {
-     await this.xcursionsService.deleteXcursion(id);
+      await this.xcursionsService.deleteXcursion(id);
     } catch (error) {
       this.presentToast("Erro ao deletar");
     }

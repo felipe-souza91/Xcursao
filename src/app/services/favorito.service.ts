@@ -37,9 +37,7 @@ export class FavoritoService {
     )
    }
    addFavorito(xcursion: Favoritos){
-
     return this.favoritaCollection.add(xcursion);
-
    }
    
    deleteFavorito(id: string){

@@ -45,8 +45,8 @@ private userId: string;
 
   async alterarlogin(){
     try{
-      const newUserObject = Object.assign({}, this.alterlogin);
-     
+      
+  
         this.authService.updateUser(this.userId, this.alterlogin);
         this.router.navigate(['/home', {locs: this.alterlogin.email}]);
     } catch(error){
