@@ -98,9 +98,10 @@ async galeryPhoto(){
       }
     }
   }
-  async participarXcursion(xcursionId: string, xcursionNome: string) {
+  async participarXcursion(xcursionId: string, xcursionNome: string, qt_vagas: number) {
    
     this.loadxcursion(xcursionId);
+    
     if (this.xcursionlista == null) {
       console.log("resultado null");
     } else {
@@ -108,8 +109,13 @@ async galeryPhoto(){
       if (this.xcursionlista.nome == xcursionNome) {
         this.xcursionlista.nome = xcursionNome;
         try {
+          
+          let vaga: number = (qt_vagas - 1);
+          this.xcursion.qt_vagas = vaga;
+          this.xcursionsService.updateXcursion(xcursionId, this.xcursion);
           this.participarService.addParticipacao(this.xcursionlista);
           this.router.navigate(['/participar', { locs: this.email }]);
+          
         } catch (error) {
           console.log("Erro ao parcicipar");
         }

@@ -40,7 +40,7 @@
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
         <ion-item size="2">
-          <img src="assets/imagens/busicon.png" (click)="participarXcursion(xcursion.id,xcursion.nome)" height="30">
+          <img src="assets/imagens/busicon.png" (click)="participarXcursion(xcursion.id,xcursion.nome, xcursion.qt_vagas)" height="30">
           <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="30">
           <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
             <ion-label>
