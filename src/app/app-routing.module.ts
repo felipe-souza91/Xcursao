@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'pag-inicial', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
@@ -26,7 +26,7 @@ const routes: Routes = [
     path: 'detail/:email',
     loadChildren: () => import('./pages/detail/detail.module').then(m => m.DetailPageModule)
   },
-  
+
   {
     path: 'detailscursion',
     loadChildren: () => import('./pages/detailscursion/detailscursion.module').then(m => m.DetailscursionPageModule)
@@ -39,44 +39,48 @@ const routes: Routes = [
 
   {
     path: 'gps',
-    loadChildren: () => import('./pages/gps/gps.module').then( m => m.GpsPageModule)
+    loadChildren: () => import('./pages/gps/gps.module').then(m => m.GpsPageModule)
   },
-  
+
 
   {
     path: 'addphoto',
-    loadChildren: () => import('./pages/addphoto/addphoto.module').then( m => m.AddphotoPageModule)
+    loadChildren: () => import('./pages/addphoto/addphoto.module').then(m => m.AddphotoPageModule)
   },
   {
     path: 'favoritos',
-    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosPageModule)
   },
 
   {
     path: 'favoritos/:id',
-    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosPageModule)
   },
   {
     path: 'alterar-login',
-    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then( m => m.AlterarLoginPageModule)
+    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then(m => m.AlterarLoginPageModule)
   },
 
   {
     path: 'alterar-login/:id',
-    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then( m => m.AlterarLoginPageModule)
+    loadChildren: () => import('./pages/alterar-login/alterar-login.module').then(m => m.AlterarLoginPageModule)
   },
   {
     path: 'detailscursion-favorito',
-    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then( m => m.DetailscursionFavoritoPageModule)
+    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then(m => m.DetailscursionFavoritoPageModule)
   },
 
   {
     path: 'detailscursion-favorito/:id',
-    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then( m => m.DetailscursionFavoritoPageModule)
+    loadChildren: () => import('./pages/detailscursion-favorito/detailscursion-favorito.module').then(m => m.DetailscursionFavoritoPageModule)
   },
   {
     path: 'participar',
-    loadChildren: () => import('./pages/participar/participar.module').then( m => m.ParticiparPageModule)
+    loadChildren: () => import('./pages/participar/participar.module').then(m => m.ParticiparPageModule)
+  },
+  {
+    path: 'pag-inicial',
+    loadChildren: () => import('./pages/pag-inicial/pag-inicial.module').then(m => m.PagInicialPageModule)
   },
 
 

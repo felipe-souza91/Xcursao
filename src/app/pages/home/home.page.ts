@@ -37,11 +37,9 @@ export class HomePage implements OnInit {
   public email: string;
   public outrasViagens = false;
   private bloq: boolean;
-
+  public mensagemqtd: string = '';
   private xcursion: Xcursion = {};
   private xcursionlista: Xcursionlista = {};
-
-
 
   constructor(
     private xcursionsService: XcursionService,
@@ -67,7 +65,6 @@ export class HomePage implements OnInit {
       });
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
-
       });
     }
   }
@@ -99,25 +96,27 @@ async galeryPhoto(){
     }
   }
   async participarXcursion(xcursionId: string, xcursionNome: string, qt_vagas: number) {
-   
     this.loadxcursion(xcursionId);
-    
     if (this.xcursionlista == null) {
-      console.log("resultado null");
+     this.mensagemqtd = 'Vagas exedidas!';
     } else {
       this.xcursionlista.email = this.email;
       if (this.xcursionlista.nome == xcursionNome) {
         this.xcursionlista.nome = xcursionNome;
-        try {
-          
-          let vaga: number = (qt_vagas - 1);
+        let vaga: number = (qt_vagas - 1);
           this.xcursion.qt_vagas = vaga;
+
+          if(this.xcursion.qt_vagas >= 0){
+            this.mensagemqtd = '';
+        try {
           this.xcursionsService.updateXcursion(xcursionId, this.xcursion);
           this.participarService.addParticipacao(this.xcursionlista);
           this.router.navigate(['/participar', { locs: this.email }]);
-          
         } catch (error) {
-          console.log("Erro ao parcicipar");
+          console.log("Erro ao parcicipar!");
+          }
+        }else{
+          this.mensagemqtd = 'Não há vagas!';
         }
       }
     }
@@ -155,14 +154,11 @@ async galeryPhoto(){
     await this.router.navigate(['/detailscursion', { locs: this.email }]);
   }
   searchChanged() {
-
     if (this.bloq == true) {
       this.xcursionsSubscription = this.xcursionsService.getListaxcursion(this.search).subscribe(data => {
         this.xcursions = data;
       });
     } else {
-
-
 
       if (this.search.length > 0) {
         this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search, this.email).subscribe(data => {
@@ -204,19 +200,9 @@ async galeryPhoto(){
       this.presentToast("Erro ao deletar");
     }
   }
-
-
-
+  
   async presentToast(message: string) {
     const toast = await this.loadingCtrl.create({ message, duration: 2000 });
     toast.present();
-
   }
-
-
-
-
-
-
-
 }

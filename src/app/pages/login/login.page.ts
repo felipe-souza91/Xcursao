@@ -4,12 +4,11 @@ import { HomePage } from './../home/home.page';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlide, IonSlides, LoadingController, ToastController } from '@ionic/angular';
+import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { XcursionService} from 'src/app/services/xcursion.service';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 
@@ -33,15 +32,13 @@ export class LoginPage implements OnInit {
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
     public keyboard: Keyboard,
-
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private authService: AuthService,
-    private xcursionService: XcursionService,
     private router: Router) { }
-    
+
   ngOnInit() {
-    this.keyboard
+    this.keyboard;
   }
 
   segmentChanged(event: any) {
@@ -57,7 +54,7 @@ export class LoginPage implements OnInit {
     await this.presentLoading();
     try {
       await this.authService.login(this.userLogin);
-      await this.router.navigate(['/home', {locs: this.userLogin.email}]);
+      await this.router.navigate(['/home', { locs: this.userLogin.email }]);
       this.loading.dismiss();
     } catch (error) {
       let message: string;
@@ -69,7 +66,6 @@ export class LoginPage implements OnInit {
           message = 'Email Invalido';
           break;
       }
-
       this.presentToast(error.message);
     } finally {
       this.loading.dismiss();
@@ -77,7 +73,6 @@ export class LoginPage implements OnInit {
   }
 
   async register() {
-    
     try {
       const newUserObject = Object.assign({}, this.userRegister);
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
@@ -104,7 +99,6 @@ export class LoginPage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
       message: 'Aguarde...',
-      //duration: 2000
     });
     return this.loading.present();
   }

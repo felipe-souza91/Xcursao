@@ -39,17 +39,18 @@
 
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
-        <ion-item size="2">
-          <img src="assets/imagens/busicon.png" (click)="participarXcursion(xcursion.id,xcursion.nome, xcursion.qt_vagas)" height="30">
-          <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="30">
+        <ion-item >
+          <div class="alinhar">
+          <img src="assets/imagens/busicon.png"  (click)="participarXcursion(xcursion.id,xcursion.nome, xcursion.qt_vagas)" height="20">
+          <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="25">
+        </div>
           <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
             <ion-label>
-              <h2><strong>{{xcursion.nome}}</strong></h2> <br>
-              <p> Qtde de viagem: {{xcursion.qt_vagas}}</p>
-              <p> Data: {{xcursion.data | date : 'short'}}</p>
+              <p><strong>{{xcursion.nome}}</strong></p> <br>
+              <p style="font: normal 8pt arial"> <strong>Qtde:</strong> {{xcursion.qt_vagas}}</p>
+              <p style="color:red; font:normal 8pt arial;"><strong>{{mensagemqtd}}</strong></p>
             </ion-label>
-            <ion-note color="primary" slot="end" *ngIf="xcursion.valor"> R$ {{xcursion.valor}}</ion-note>
-
+            <ion-note color="primary" slot="end" *ngIf="xcursion.valor"><strong> R$ {{xcursion.valor}}</strong></ion-note>
           </ion-item>
         </ion-item>
         <ion-item-options side="end">
@@ -97,7 +98,7 @@
           <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="40">
         </ion-col>
         <ion-col size="2">
-          <img src="assets/imagens/participacao.png" button (click)="participar()" width="40" height="40">
+          <img src="assets/imagens/visualizar.png" button (click)="participar()" width="40" height="40">
         </ion-col>
       </ion-item-sliding>
     </ion-row>
