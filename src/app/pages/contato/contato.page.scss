@@ -1,0 +1,34 @@
+ion-list{
+    
+    ion-item{
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: solid 1px blue;
+    }
+    .p{
+        margin-top:20px;
+        margin-left:60px;
+        color:#ffffff;
+        text-shadow: 5px 5px 10px #333;
+    }
+    ion-label{ 
+        background-color:#2a7fffff;
+    }
+    p{
+        margin-left: 60px;
+        color:#ffffff; 
+        text-shadow: 5px 5px 10px #333;
+    }
+    
+}
+.rodape{
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #d7eef4ff;
+    img{
+        float: right;
+        margin-right: 20px;
+    }
+}

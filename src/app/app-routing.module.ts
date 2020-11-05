@@ -82,6 +82,10 @@ const routes: Routes = [
     path: 'pag-inicial',
     loadChildren: () => import('./pages/pag-inicial/pag-inicial.module').then(m => m.PagInicialPageModule)
   },
+  {
+    path: 'contato',
+    loadChildren: () => import('./pages/contato/contato.module').then( m => m.ContatoPageModule)
+  },
 
 
 ];

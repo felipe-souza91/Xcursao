@@ -57,8 +57,8 @@ export class HomePage implements OnInit {
     this.email = this.activeRoute.snapshot.params['locs'];
 
     if (this.email == null) {
-     
-      
+
+
       setInterval(() => {
 
         this.progress += .1;
@@ -66,7 +66,7 @@ export class HomePage implements OnInit {
           this.authService.logout();
         }
       }, 1200);
-    
+
     } else {
 
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
@@ -78,9 +78,9 @@ export class HomePage implements OnInit {
       });
     }
   }
-async galeryPhoto(){
-  await this.router.navigate(['/addphoto', { locs: this.email }]);
-}
+  async galeryPhoto() {
+    await this.router.navigate(['/addphoto', { locs: this.email }]);
+  }
   loadxcursion(xcursionId) {
     this.xcursionsSubscription = this.xcursionsService.getXcursion(xcursionId).subscribe(data => {
       this.xcursionlista = data;
@@ -98,7 +98,7 @@ async galeryPhoto(){
         try {
           this.xcursionlista.email = this.email;
           this.favoritoService.addFavorito(this.xcursionlista);
-          this.router.navigate(['/favoritos', { locs: this.email }]);
+          this.router.navigate(['/home', { locs: this.email }]);
         } catch (error) {
           console.log('Erro ao adicionar!');
         }
@@ -108,24 +108,24 @@ async galeryPhoto(){
   async participarXcursion(xcursionId: string, xcursionNome: string, qt_vagas: number) {
     this.loadxcursion(xcursionId);
     if (this.xcursionlista == null) {
-     this.mensagemqtd = 'Vagas exedidas!';
+      this.mensagemqtd = 'Vagas exedidas!';
     } else {
       this.xcursionlista.email = this.email;
       if (this.xcursionlista.nome == xcursionNome) {
         this.xcursionlista.nome = xcursionNome;
         let vaga: number = (qt_vagas - 1);
-          this.xcursion.qt_vagas = vaga;
+        this.xcursion.qt_vagas = vaga;
 
-          if(this.xcursion.qt_vagas >= 0){
-            this.mensagemqtd = '';
-        try {
-          this.xcursionsService.updateXcursion(xcursionId, this.xcursion);
-          this.participarService.addParticipacao(this.xcursionlista);
-          this.router.navigate(['/participar', { locs: this.email }]);
-        } catch (error) {
-          console.log("Erro ao parcicipar!");
+        if (this.xcursion.qt_vagas >= 0) {
+          this.mensagemqtd = '';
+          try {
+            this.xcursionsService.updateXcursion(xcursionId, this.xcursion);
+            this.participarService.addParticipacao(this.xcursionlista);
+            this.router.navigate(['/participar', { locs: this.email }]);
+          } catch (error) {
+            console.log("Erro ao parcicipar!");
           }
-        }else{
+        } else {
           this.mensagemqtd = 'Não há vagas!';
         }
       }
@@ -202,6 +202,9 @@ async galeryPhoto(){
 
     }
   }
+  contato() {
+    this.router.navigate(['/contato', { locs: this.email }]);
+  }
 
   async deleteXcursion(id: string) {
     try {
@@ -210,7 +213,7 @@ async galeryPhoto(){
       this.presentToast("Erro ao deletar");
     }
   }
-  
+
   async presentToast(message: string) {
     const toast = await this.loadingCtrl.create({ message, duration: 2000 });
     toast.present();
