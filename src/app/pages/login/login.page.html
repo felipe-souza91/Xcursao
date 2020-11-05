@@ -25,7 +25,7 @@
         <ion-item class="ion-marging-top" lines="full">
           <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.password"></ion-input>
         </ion-item>
-
+        <p button (click)="redefenirPassword()">Esqueceu sua senha?</p>
         <ion-button class="ion-margin-top " (click)="login()" expand="block" color="light" size="default">
           Entrar
         </ion-button>

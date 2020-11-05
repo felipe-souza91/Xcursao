@@ -40,6 +40,7 @@ export class HomePage implements OnInit {
   public mensagemqtd: string = '';
   private xcursion: Xcursion = {};
   private xcursionlista: Xcursionlista = {};
+  progress = 0;
 
   constructor(
     private xcursionsService: XcursionService,
@@ -56,7 +57,16 @@ export class HomePage implements OnInit {
     this.email = this.activeRoute.snapshot.params['locs'];
 
     if (this.email == null) {
-      this.logout();
+     
+      
+      setInterval(() => {
+
+        this.progress += .1;
+        if (this.progress == 0.6) {
+          this.authService.logout();
+        }
+      }, 1200);
+    
     } else {
 
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {

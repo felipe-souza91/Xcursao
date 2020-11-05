@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
   public userRegister: User = {};
   private loading: any;
   private home: HomePage;
+  private actionCode: string = "thiago@gmail.com";
+  private newPassword: "101010";
 
   constructor(
     private afa: AngularFireAuth,
@@ -60,11 +62,15 @@ export class LoginPage implements OnInit {
       let message: string;
       switch (error.code) {
         case 'auth/email-already-in-use':
-          message = 'Email já Cadastrado';
+          message = 'Email já Cadastrado!';
           break;
         case 'auth/invalid-email':
           message = 'Email Invalido';
           break;
+        case 'auth/user-not-found':
+          message = 'Email não cadastrado!';
+          break;
+
       }
       this.presentToast(error.message);
     } finally {
@@ -72,11 +78,16 @@ export class LoginPage implements OnInit {
     }
   }
 
+
   async register() {
+    await this.presentLoading();
     try {
+      delete (this.userLogin.email);
+      delete (this.userLogin.password);
       const newUserObject = Object.assign({}, this.userRegister);
       const newUser = await this.afa.auth.createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password);
       await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
+      await this.afa.auth.signInWithEmailLink(this.userRegister.email);
       await this.router.navigate(['/home']);
     } catch (error) {
       let message: string;
@@ -95,6 +106,22 @@ export class LoginPage implements OnInit {
       this.loading.dismiss();
     }
   }
+  async redefenirPassword() {
+    if (this.userLogin.email == '') {
+      let message = 'Digite o seu e-mail acima!';
+      this.presentToast(message);
+    } else {
+
+      try {
+        this.afa.auth.sendPasswordResetEmail(this.userLogin.email);
+        let message = 'Link enviado para seu email!';
+        this.presentToast(message);
+      } catch (error) {
+        let message = "Link não enviado!";
+        this.presentToast(message);
+      }
+    }
+  }
 
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
@@ -106,7 +133,7 @@ export class LoginPage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastCtrl.create({
       message,
-      duration: 2000
+      duration: 3000
     });
     toast.present();
   }

@@ -5,19 +5,20 @@
 </ion-header>
 
   <ion-content class="ion-padding">
+    <h3 style="color: green">{{message}}</h3>
+    <h3 style="color: red">{{message2}}</h3>
     <ion-list>
       <ion-item>
 <ion-input type="nome" [(ngModel)]="alterlogin.nome_criador" placeholder="Email"></ion-input>
 </ion-item>
-<ion-item>
-<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email" [disabled]="false"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-input type="text" [(ngModel)]="alterlogin.password" placeholder="Senha" [disabled]="false"></ion-input>
-  </ion-item>
-</ion-list>
-  <ion-button (click)="alterarlogin()">Alterar</ion-button>
+<ion-button (click)="alterarlogin()">Alterar</ion-button>
+<br>
+ <br>
+  <ion-item>
+<ion-input type="email" [(ngModel)]="alterlogin.email" placeholder="Email" ></ion-input>
+      </ion-item> 
+      <ion-button (click)="redefinirSenha()">Redefinir senha</ion-button>
+        </ion-list> 
 </ion-content>
 <div class="rodape">
   <ion-grid>

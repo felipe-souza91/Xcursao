@@ -17,6 +17,8 @@ private alterlogin: Alterlogin = {};
 private alterlogins = new Array<Alterlogin>();
 private alterloginSubscription: Subscription;
 private userId: string;
+public message: string = '';
+public message2: string = '';
 
   constructor( private authService: AuthService,
     private activeRoute: ActivatedRoute, 
@@ -27,6 +29,8 @@ private userId: string;
      ) { 
   this.userId = this.activeRoute.snapshot.params['id'];
        this.loadLogin();
+       this.message2 = "";
+       this.message = "";
   }
 
   loadLogin(){
@@ -37,6 +41,25 @@ private userId: string;
   }
 
   ngOnInit() {
+  }
+   async redefinirSenha(){
+
+     if(this.alterlogin.email == ""){
+      this.message = "";
+       this.message2 = "Digite o seu e-mail:";
+
+     }else{
+
+try{
+
+  this.afa.auth.sendPasswordResetEmail(this.alterlogin.email);
+  this.message = "Link enviado para seu email!";
+  this.message2 = "";
+}catch{
+  this.message2 = "Não há registro nesse e-mail!";
+  this.message = "";
+}
+     }
   }
 
   voltar(){
