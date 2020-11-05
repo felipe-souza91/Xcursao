@@ -61,6 +61,9 @@ try{
 }
      }
   }
+  contato(){
+    this.router.navigate(['/contato', {locs: this.alterlogin.email}]);
+  }
 
   voltar(){
     this.router.navigate(['/home', {locs: this.alterlogin.email}]);
