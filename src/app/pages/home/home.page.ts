@@ -106,7 +106,7 @@ export class HomePage implements OnInit {
         try {
           this.xcursionlista.email = this.email;
           this.favoritoService.addFavorito(this.xcursionlista);
-          this.router.navigate(['/home', { locs: this.email }]);
+          this.router.navigate(['/favoritos', { locs: this.email }]);
         } catch (error) {
           console.log('Erro ao adicionar!');
         }

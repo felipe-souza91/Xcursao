@@ -86,6 +86,15 @@ const routes: Routes = [
     path: 'contato',
     loadChildren: () => import('./pages/contato/contato.module').then( m => m.ContatoPageModule)
   },
+  {
+    path: 'detail-participar',
+    loadChildren: () => import('./pages/detail-participar/detail-participar.module').then( m => m.DetailParticiparPageModule)
+  },
+
+  {
+    path: 'detail-participar/:id',
+    loadChildren: () => import('./pages/detail-participar/detail-participar.module').then( m => m.DetailParticiparPageModule)
+  },
 
 
 ];

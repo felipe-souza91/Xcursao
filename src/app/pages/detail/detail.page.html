@@ -4,13 +4,29 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+
+  <ion-button style="margin-left: 70px;" (click)="openGalery()">Escolher foto</ion-button>
+<ion-item>
+  <ion-label>Progresso do Upload: {{uploadPercent | async}} %</ion-label><br>
+</ion-item>
+<ion-item>
+  <img  [src]="downloadUrl | async" *ngIf="downloadUrl | async">
+</ion-item>
+  <p>ou</p>
   <ion-list>
     <ion-item>
-      <ion-input type="text" [(ngModel)]="xcursion.email" placeholder="Email" disabled></ion-input>
+     
+      <ion-input type="text" [(ngModel)]="xcursion.imagem" placeholder="Link da foto"></ion-input>
     </ion-item>
-  
+  </ion-list>
+
+  <ion-list>
     <ion-item>
       <ion-input type="text" [(ngModel)]="xcursion.imagem" placeholder="Link da foto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="xcursion.email" placeholder="Email" disabled></ion-input>
     </ion-item>
 
     <ion-item>

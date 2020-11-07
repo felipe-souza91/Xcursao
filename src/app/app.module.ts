@@ -18,7 +18,6 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 

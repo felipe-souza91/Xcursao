@@ -20,7 +20,7 @@ export class FavoritosPage implements OnInit {
   private xcursionId: string = null;
   private email: string = null;
   private favorito: DetailscursionPage;
-
+    public search: string = '';
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -39,11 +39,27 @@ export class FavoritosPage implements OnInit {
     this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
       this.favoritos = data;
     });
+    if(this.search == ''){
+    this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
+      this.favoritos = data;
+    });
   }
-
+    }
 
   voltar(){
     this.router.navigate(['/home', {locs: this.email}]);
+  }
+
+  searchChanged(){
+    if(this.search == ''){
+      this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
+        this.favoritos = data;
+      });
+    }else{
+      this.favoritaSubscription = this.favoritaService.getFavoritoLocal(this.email, this.search).subscribe(data => {
+        this.favoritos = data;
+      });
+    }
   }
 
   loadXvision() {

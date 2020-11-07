@@ -5,11 +5,13 @@
     </ion-buttons>
     <ion-title>  Minhas participações</ion-title>
   </ion-toolbar>
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate color="white">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content>
 <ion-list *ngFor = "let participar of participarem">
-<ion-item>
+<ion-item button [routerLink]="['/detail-participar', participar.id]" >
 <ion-col>
 <p><strong>Local: </strong> {{participar.nome}}</p>
 </ion-col>

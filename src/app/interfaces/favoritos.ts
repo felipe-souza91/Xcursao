@@ -12,4 +12,6 @@ export interface Favoritos {
     nome_criador?: string;
     descricao?: string;
     imagem?: string;
+   
+   
 }
