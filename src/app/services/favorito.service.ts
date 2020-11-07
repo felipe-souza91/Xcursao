@@ -36,6 +36,19 @@ export class FavoritoService {
       })
     )
    }
+
+   getFavoritoLocal(email: string, search: string ) {
+    this.favoritaCollection = this.afs.collection<Favoritos>('Favoritos', ref => ref.where('email', '==', email).where('nome', '==', search));
+    return this.favoritaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    )
+   }
    addFavorito(xcursion: Favoritos){
     return this.favoritaCollection.add(xcursion);
    }

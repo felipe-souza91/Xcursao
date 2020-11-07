@@ -3,7 +3,8 @@
     <ion-title>Meus favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate color="white">
+</ion-searchbar>
 <ion-content>
   <br>
 <ion-list>

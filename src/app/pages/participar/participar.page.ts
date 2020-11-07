@@ -13,6 +13,7 @@ export class ParticiparPage implements OnInit {
   private participarem = new Array<Participar>();
   private participarSubscription: Subscription;
   private email: string = null;
+   public search: string = '';
 
   constructor(
     private participarService: ParticiparService,
@@ -24,12 +25,30 @@ export class ParticiparPage implements OnInit {
     this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
       this.participarem = data;
     });
+    if(this.search == ''){
+    this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
+      this.participarem = data;
+    });
+  }
   }
 
   ngOnInit() {
   }
-    voltar(){
-    this.router.navigate(['/home', {locs: this.email}]);
+  voltar() {
+    this.router.navigate(['/home', { locs: this.email }]);
+  }
+
+  searchChanged() {
+    if (this.search == '') {
+      this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
+        this.participarem = data;
+      });
+    } else {
+      this.participarSubscription = this.participarService.getParticiparSeach(this.email, this.search).subscribe(data => {
+        this.participarem = data;
+      });
+    }
+   
   }
 
   async deletar(id: string) {
@@ -38,6 +57,9 @@ export class ParticiparPage implements OnInit {
     } catch (error) {
       console.log("Erro!");
     }
+  }
+  async detalParcicipacao() {
+    this.router.navigate(['/detail-participar', { locs: this.email }]);
   }
 
 }

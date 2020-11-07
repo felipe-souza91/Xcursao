@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ParticiparService {
-private participaCollection: AngularFirestoreCollection<Participar>;
+  private participaCollection: AngularFirestoreCollection<Participar>;
   constructor(
     private afs: AngularFirestore,
-     ) { 
+  ) {
     this.participaCollection = this.afs.collection<Participar>('Participar');
   }
 
@@ -28,11 +28,28 @@ private participaCollection: AngularFirestoreCollection<Participar>;
     )
   }
 
-  addParticipacao(participar: Participar){
+  getParticiparSeach(email: string, seach: string) {
+    this.participaCollection = this.afs.collection<Participar>('Participar', ref => ref.where('email', '==', email).where('nome', '==', seach));
+    return this.participaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    )
+  }
+
+  addParticipacao(participar: Participar) {
     return this.participaCollection.add(participar);
   }
 
-  deletarParticipacao(id: string){
+  deletarParticipacao(id: string) {
     return this.participaCollection.doc<Participar>(id).delete();
+  }
+
+  getParticiparId(id: string) {
+    return this.participaCollection.doc<Participar>(id).valueChanges();
   }
 }

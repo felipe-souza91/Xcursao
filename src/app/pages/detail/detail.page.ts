@@ -80,11 +80,9 @@ export class DetailPage implements OnInit {
     this.router.navigate(['/home', { locs: this.xcursion.email }]);
   }
 
-
-
+//Código para upload de galeria
 
   async openGalery() {
-
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -97,25 +95,26 @@ export class DetailPage implements OnInit {
 
       let file: string;
       if (this.platform.is('ios')) {
-
         file = fileUrl.split('/').pop();
-
       } else {
         file = fileUrl.substring(fileUrl.lastIndexOf('/') + 1, fileUrl.indexOf('?'));
       }
       const path: string = fileUrl.substring(0, fileUrl.lastIndexOf('/'));
       const buffer: ArrayBuffer = await this.file.readAsArrayBuffer(path, file);
-      const blob = new Blob([buffer], { type: 'imagens/jpeg' });
+      const blob = new Blob([buffer], { type: 'imagens/jpeg'});
       this.uploadPicture(blob);
-
     } catch (error) {
       console.error(error);
 
     }
   }
+  //Código para upload de imagem bilioteca de imagem
+
   uploadPicture(blob: Blob) {
+    
     const ref = this.afStorage.ref('ionic.jpg');
     const task = ref.put(blob);
+
     this.uploadPercent = task.percentageChanges();
 
     task.snapshotChanges().pipe(

@@ -46,7 +46,7 @@
     </platform>
     <platform name="ios">
         <edit-config file="*-Info.plist" node="merge" target="NSPhotoLibraryUsageDescription">
-            <string>need photo libtrary access to get pictures from there</string>
+            <string>Precisamos dessa permissão para ter acesso a biblioteca de arquivos de imagem! </string>
         </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
