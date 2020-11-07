@@ -55,18 +55,12 @@ export class HomePage implements OnInit {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private participarService: ParticiparService,
-   
-  ) {
 
-    
+  ) {
 
     this.email = this.activeRoute.snapshot.params['locs'];
 
-
-    
     if (this.email == null) {
-
-
       setInterval(() => {
 
         this.progress += .1;
@@ -79,11 +73,11 @@ export class HomePage implements OnInit {
 
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
         this.users = data;
-
       });
-      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
+      this.bloq = true;
     }
   }
   async galeryPhoto() {
@@ -143,30 +137,32 @@ export class HomePage implements OnInit {
   acionar() {
     if (this.outrasViagens) {
       this.outrasViagens = false;
-      this.bloq = true;
-      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
-        this.xcursions = data;
-      });
-    } else {
-      this.outrasViagens = true;
       this.bloq = false;
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
+      });
+
+    } else {
+      this.outrasViagens = true;
+      this.bloq = true;
+
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+        this.xcursions = data;
+
       });
     }
   }
   ngOnInit() {
   }
 
-  async participar() {
+  async MinhasParticipacoes() {
     await this.router.navigate(['/participar', { locs: this.email }]);
   }
+
   async home() {
     await this.router.navigate(['/home', { locs: this.email }]);
   }
-  async alterlogin() {
-    await this.router.navigate(['/alterar-login', { locs: this.email }]);
-  }
+
 
   async detailcursion() {
     await this.router.navigate(['/detailscursion', { locs: this.email }]);

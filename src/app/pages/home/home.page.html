@@ -2,15 +2,11 @@
   <label>
     <h2>Encontre suas viagens aqui e divirta-se!!!</h2>
   </label>
-  <div *ngFor="let user of users">
-    <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
-  </div>
-
    <div class="subtopo">
       <img src="assets/imagens/heart.svg" (click)="favoritos()" height="30" />
       Meus favoritos
       <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
-      <ion-label> Outras viagens</ion-label>
+      <ion-label> Minhas viagens</ion-label>
    </div>
      
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
@@ -83,23 +79,34 @@
         </ion-col>
 
         <ion-col size="2">
-          <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
+        <!---  <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">-->
         </ion-col>
-
+        
+<!--Acrecentar no modal--->
         <ion-col size="2">
           <img src="assets/imagens/add.svg" (click)="detail()" width="40" height="40">
         </ion-col>
 
-        <ion-col size="2" *ngFor="let user of users">
-          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="40">
+<!--Acrecentar no modal--->
+        <ion-col size="2">
+         <!--- <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">--->
         </ion-col>
 
+        <!--Acrecentar no modal--->
         <ion-col size="2">
-          <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
+          <!---<img src="assets/imagens/visualizar.png" button (click)="MinhasParticipacoes()" width="40" height="40">--->
+        </ion-col>
+
+         <!--Acrecentar no modal--->
+         <ion-col size="2">
+        <!-- <img src="assets/imagens/contato.png" button (click)="contato()" width="40" height="40">--->
         </ion-col>
 
         <ion-col size="2">
           <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
+        </ion-col>
+        <ion-col size="2">
+          <img src="assets/imagens/mais.png" width="40" height="40">
         </ion-col>
         
       </ion-item-sliding>
