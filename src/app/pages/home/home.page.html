@@ -1,20 +1,23 @@
 <div #map class="top">
   <label>
-    <h5>Encontre suas viagens aqui e divirta-se!!!</h5>
-    <div *ngFor="let user of users">
-      <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
-    </div>
-    <p style='color: #ffffff; margin-left:30px;'>
-      <img src="assets/imagens/favorita.png" (click)="favoritos()" height="30" />
+    <h2>Encontre suas viagens aqui e divirta-se!!!</h2>
+  </label>
+  <div *ngFor="let user of users">
+    <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
+  </div>
+
+   <div class="subtopo">
+      <img src="assets/imagens/heart.svg" (click)="favoritos()" height="30" />
       Meus favoritos
       <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
       <ion-label> Outras viagens</ion-label>
-    </p>
-  </label>
+   </div>
+     
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
 </div>
 <ion-content>
+   
   <div class="container">
     <ion-list *ngIf="!xcursions.length">
       <ion-item *ngFor="let item of [0,1,2,3,4]">
@@ -76,15 +79,11 @@
       <ion-item-sliding>
 
         <ion-col size="2">
-          <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
+          <img src="assets/imagens/home.svg" (click)="home()" width="40" height="40">
         </ion-col>
 
         <ion-col size="2">
           <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
-        </ion-col>
-
-        <ion-col size="2">
-          <img src="assets/imagens/home.svg" (click)="home()" width="40" height="40">
         </ion-col>
 
         <ion-col size="2">
@@ -94,12 +93,15 @@
         <ion-col size="2" *ngFor="let user of users">
           <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="40">
         </ion-col>
+
         <ion-col size="2">
-          <img src="assets/imagens/visualizar.png" button (click)="participar()" width="40" height="40">
+          <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
         </ion-col>
+
         <ion-col size="2">
-          <img src="assets/imagens/contato.png" (click) ="contato()" height="30">
+          <img src="assets/imagens/sair.svg" (click)="logout()" width="40" height="40">
         </ion-col>
+        
       </ion-item-sliding>
     </ion-row>
   </ion-grid>
