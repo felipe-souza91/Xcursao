@@ -17,6 +17,7 @@ import { ParticiparService } from 'src/app/services/participar.service';
 
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -42,6 +43,7 @@ export class HomePage implements OnInit {
   private xcursionlista: Xcursionlista = {};
   progress = 0;
 
+
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
@@ -52,10 +54,16 @@ export class HomePage implements OnInit {
     private afs: AngularFirestore,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private participarService: ParticiparService
+    private participarService: ParticiparService,
+   
   ) {
+
+    
+
     this.email = this.activeRoute.snapshot.params['locs'];
 
+
+    
     if (this.email == null) {
 
 

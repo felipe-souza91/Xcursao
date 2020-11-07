@@ -44,7 +44,6 @@ export class AuthService {
   }
 
   register(user: User){
-  
     return this.afa.auth.createUserWithEmailAndPassword(user.email, user.password);
   }
 

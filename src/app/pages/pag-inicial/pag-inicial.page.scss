@@ -7,22 +7,29 @@ ion-spinner{
 }
 h2{
     color: #ffffff;
-    margin-left: 56px; 
+    margin-left: 68px; 
     text-shadow: 5px 5px 10px #333;
 }
 p{
     color: #ffffff; 
-    margin-left: 10%; 
+    margin-left: 12%; 
+    text-shadow: 5px 5px 10px #333;
+}
+h5{
+    color: #ffffff; 
+    margin-left: 14%; 
     text-shadow: 5px 5px 10px #333;
 }
 
-img{
-    margin-left: 110px;  
+.imagem-align{
+margin-left: 110px ;
 }
-
 .imagem{
-   background-image: url('/assets/imagens/imagemInicial.jpg');
+   //background-image: url('/assets/imagens/imagemInicial.jpg');
+   background-color:#2a7fffff;
     height: 700px;
-    width: 600px;
-    background-repeat: no-repeat;
+    width: 600px;  
+}
+.ajustimagem{
+    margin-left: 17px;
 }

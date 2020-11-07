@@ -15,13 +15,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {Camera} from '@ionic-native/camera/ngx';
-import {File} from '@ionic-native/file/ngx';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { Camera } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
 
-import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
- 
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,8 +33,8 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        AngularFireStorageModule 
-        
+        AngularFireStorageModule,
+
     ],
     providers: [
         StatusBar,
@@ -42,9 +42,9 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         Keyboard,
         Camera,
-         File,
-         Geolocation,
-        
+        File,
+        Geolocation,
+
     ],
     bootstrap: [AppComponent]
 })
