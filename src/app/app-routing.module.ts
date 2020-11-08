@@ -94,7 +94,11 @@ const routes: Routes = [
   {
     path: 'detail-participar/:id',
     loadChildren: () => import('./pages/detail-participar/detail-participar.module').then( m => m.DetailParticiparPageModule)
+  },  {
+    path: 'menu',
+    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
   },
+
 
 
 ];
