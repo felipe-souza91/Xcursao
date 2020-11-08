@@ -93,6 +93,20 @@ export class XcursionService {
     )
   }
 
+  getselecionaXcursions(nome:string) {
+    this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('nome', '==', nome));
+    return this.xcursionsCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+
+          return { id, ...data };
+        });
+      })
+    )
+  }
+
   
   addXcursion(xcursion: Xcursion) {
     return this.xcursionsCollection.add(xcursion);

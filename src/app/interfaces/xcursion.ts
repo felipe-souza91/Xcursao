@@ -11,5 +11,6 @@ export interface Xcursion {
     nome_criador?: string;
     descricao?: string;
     imagem?: string;
+    avaliacao?: string;
 
 }

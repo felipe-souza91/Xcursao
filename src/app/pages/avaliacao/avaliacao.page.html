@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de avaliações</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
+</ion-searchbar>
+<ion-content>
+  <ion-list >
+    <ion-item *ngFor="let avaliacao of avaliacoes">
+<ion-col>
+  <p><strong>Local:</strong>{{avaliacao.local}}</p>
+</ion-col>
+
+<ion-col>
+  <p><strong>Criador:</strong> {{avaliacao.nome_criador}} </p>
+</ion-col>
+
+<ion-col>
+<p><strong>Avaliação:</strong>{{avaliacao.avaliacao}} </p>
+</ion-col>
+
+</ion-item>
+  </ion-list>
+
+</ion-content>
+<div class="rodape">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/imagens/voltar.svg" width="30" height="30" button (click)="voltar()" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+

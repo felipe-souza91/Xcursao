@@ -35,20 +35,29 @@
     </ion-list>
     <ion-list>
       <ion-item-sliding *ngFor="let xcursion of xcursions">
+
         <ion-item >
           <div class="alinhar">
           <img src="assets/imagens/busicon.png"  (click)="participarXcursion(xcursion.id,xcursion.nome, xcursion.qt_vagas)" height="20">
           <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="25">
         </div>
+       
           <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
             <ion-label>
               <p><strong>{{xcursion.nome}}</strong></p> <br>
+              <p><strong> Criador: {{xcursion.nome_criador}}</strong></p>
               <p style="font: normal 8pt arial"> <strong>Qtde:</strong> {{xcursion.qt_vagas}}</p>
               <p style="color:red; font:normal 8pt arial;"><strong>{{mensagemqtd}}</strong></p>
             </ion-label>
             <ion-note color="primary" slot="end" *ngIf="xcursion.valor"><strong> R$ {{xcursion.valor}}</strong></ion-note>
           </ion-item>
         </ion-item>
+        <ion-col *ngFor="let star of stars; let i = index" button (click)="startClicked(i, this.xcursion.nome)">
+          <ion-icon [name]="star" ></ion-icon>
+          </ion-col>
+
+      <img src="assets/imagens/avalia.svg" button (click)="enviaAvaliacao(xcursion.nome, xcursion.nome_criador)" height="30">
+ 
         <ion-item-options side="end">
           <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)' [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
@@ -65,10 +74,14 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-
+      
     </ion-list>
+    
   </div>
+
+  
 </ion-content>
+
 <ion-footer>
   <ion-grid>
     <ion-row>
@@ -87,25 +100,18 @@
         </ion-col>
 
         <ion-col size="1" *ngFor="let user of users">
-          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="40">
-        </ion-col>
-
-        <ion-col size="1">
-          <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
+          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="50">
         </ion-col>
 
         <ion-col size="1">
           <img src="assets/imagens/visualizar.png" button (click)="MinhasParticipacoes()" width="40" height="40">
         </ion-col>
 
-        
-
         <ion-col size="1">
-          <img src="assets/imagens/more.svg" [routerLink]="['/menu']" width="40" height="40">
+          <img src="assets/imagens/more.svg" button (click)="more()" width="40" height="40">
         </ion-col>
         
       </ion-item-sliding>
     </ion-row>
   </ion-grid>
 </ion-footer>
-<!--- Alterar login feitp por Thiago-->

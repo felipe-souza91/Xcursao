@@ -43,7 +43,7 @@ export class ContatoPage implements OnInit {
     }
   }
   async voltar() {
-    await this.router.navigate(['/home', { locs: this.email }]);
+    await this.router.navigate(['/menu', { locs: this.email }]);
   }
 
   async presentLoading() {

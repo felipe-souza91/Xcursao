@@ -1,3 +1,4 @@
+import { AvaliacaoService } from './../../services/avaliacao.service';
 import { Xcursionlista } from './../../interfaces/xcursionlista';
 import { FavoritoService } from './../../services/favorito.service';
 
@@ -6,8 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { ToastController, LoadingController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Xcursion } from 'src/app/interfaces/xcursion';
+import { Avaliacao } from 'src/app/interfaces/avaliacao';
 import { Subscription } from 'rxjs';
 import { XcursionService } from 'src/app/services/xcursion.service';
 import { AuthService } from 'src/app/services/auth.service_org';
@@ -41,20 +43,27 @@ export class HomePage implements OnInit {
   public mensagemqtd: string = '';
   private xcursion: Xcursion = {};
   private xcursionlista: Xcursionlista = {};
+  public avaliacao: string = '';
+  public id: string;
+  private avaliacaolista: Avaliacao= {};
+  stars: string[] = [];
   progress = 0;
+  @Input() numStars: number = 4;
+  @Input() value: number = 4;
+  @Output() ionClick: EventEmitter<number> = new EventEmitter<number>();
 
 
   constructor(
     private xcursionsService: XcursionService,
     private authService: AuthService,
     private favoritoService: FavoritoService,
-    private alerloginServices: AuthService,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private afs: AngularFirestore,
     private activeRoute: ActivatedRoute,
     private router: Router,
     private participarService: ParticiparService,
+    private avaliacaoService: AvaliacaoService
 
   ) {
 
@@ -79,6 +88,11 @@ export class HomePage implements OnInit {
       });
       this.bloq = true;
     }
+   
+
+  this.visualavaliação();
+    
+
   }
   async galeryPhoto() {
     await this.router.navigate(['/addphoto', { locs: this.email }]);
@@ -87,9 +101,70 @@ export class HomePage implements OnInit {
     this.xcursionsSubscription = this.xcursionsService.getXcursion(xcursionId).subscribe(data => {
       this.xcursionlista = data;
     });
+    
+  
+    
   }
-  adicionarFavorito(xcursionId: string, xcursionNome: string) {
+  visualavaliação(){
+    this.stars.push("star");
+    this.stars.push("star");
+    this.stars.push("star");
+    this.stars.push("star");
+  }
 
+  //Sistema de avaliação
+
+  calc(){
+    this.stars = [];
+    let tmb = this.value;
+    for (let i = 0; i < this.numStars; i++, tmb--) {
+      if (tmb >= 1)
+        this.stars.push("star");
+      else if (tmb > 0 && tmb < 1)
+        this.stars.push('star-half');
+      else this.stars.push("star-outline");
+    }
+  }
+
+  startClicked(index, nome:string) {
+   
+    this.avaliacao = index;
+  this.value = index + 1;
+    this.ionClick.emit(this.value);
+    this.calc();
+    this.xcursionsSubscription = this.xcursionsService.getselecionaXcursions(nome).subscribe(data => {
+      this.xcursions = data;
+    });
+  }
+
+  
+  enviaAvaliacao( local: string, nome_criador: string){
+try{
+
+  //Recebe os dados para enviar no firebase
+this.avaliacaolista.data = new Date();
+this.avaliacaolista.local = local;
+this.avaliacaolista.nome_criador = 'nulo';
+this.avaliacaolista.email = this.email;
+this.avaliacaolista.avaliacao = this.avaliacao;
+
+ this.avaliacaoService.addXAvaliacao(this.avaliacaolista);
+ this.presentToast('Avaliado com sucesso!');
+
+ this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+  this.xcursions = data;
+});
+
+}catch(error){
+console.log("erro");
+console.log(local);
+}
+  }
+  //Fim da avaliação
+
+
+  adicionarFavorito(xcursionId: string, xcursionNome: string) {
+ 
     this.loadxcursion(xcursionId);
 
     if (xcursionId == null) {
@@ -163,6 +238,9 @@ export class HomePage implements OnInit {
     await this.router.navigate(['/home', { locs: this.email }]);
   }
 
+   async more(){
+    await this.router.navigate(['/menu', { locs: this.email }]);
+  }
 
   async detailcursion() {
     await this.router.navigate(['/detailscursion', { locs: this.email }]);
@@ -218,8 +296,13 @@ export class HomePage implements OnInit {
     }
   }
 
+
   async presentToast(message: string) {
-    const toast = await this.loadingCtrl.create({ message, duration: 2000 });
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 3000
+    });
     toast.present();
   }
 }
+
