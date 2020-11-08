@@ -2,15 +2,11 @@
   <label>
     <h2>Encontre suas viagens aqui e divirta-se!!!</h2>
   </label>
-  <div *ngFor="let user of users">
-    <p class="p">Seja bem-vindo(a) {{user.nome_criador}}!</p>
-  </div>
-
    <div class="subtopo">
       <img src="assets/imagens/heart.svg" (click)="favoritos()" height="30" />
       Meus favoritos
       <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
-      <ion-label> Outras viagens</ion-label>
+      <ion-label> Minhas viagens</ion-label>
    </div>
      
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
@@ -96,6 +92,10 @@
 
         <ion-col size="1">
           <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
+        </ion-col>
+
+        <ion-col size="1">
+          <img src="assets/imagens/visualizar.png" button (click)="MinhasParticipacoes()" width="40" height="40">
         </ion-col>
 
         <ion-col size="1">
