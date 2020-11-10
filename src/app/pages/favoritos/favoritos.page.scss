@@ -24,13 +24,13 @@ padding-top: 20px;
         }
 }
 ion-content{
-    
-    ion-item{
-        margin-bottom: 10px;  
-    }
     ion-list{
         background-color:#2a7fffff;
+    ion-item{
+        margin-bottom: 10px; 
+        width: 100%; 
     }
+}
     
 }
 strong{

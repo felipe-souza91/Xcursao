@@ -3,36 +3,30 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>  Minhas participações</ion-title>
+    <ion-title> Minhas participações</ion-title>
   </ion-toolbar>
-  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate color="white">
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate
+    color="white">
   </ion-searchbar>
 </ion-header>
 
 <ion-content>
-<ion-list *ngFor = "let participar of participarem">
-<ion-item button [routerLink]="['/detail-participar', participar.id]" >
-<ion-col>
-<p><strong>Local: </strong> {{participar.nome}}</p>
-</ion-col>
-
-<ion-col>
-  <p><strong>Ida: </strong> {{participar.dt_criacao}}</p>
-  </ion-col>
-
-  <ion-col>
-    <p><strong>Volta: </strong> {{participar.tempoRetorno}}</p>
-    </ion-col>
-  
-    <ion-col>
-      <p> <strong>  Valor R$:</strong> {{participar.valor}}</p>
+  <ion-list *ngFor="let participar of participarem">
+    <ion-item button [routerLink]="['/detail-participar', participar.id]">
+      <ion-col size="10">
+        <strong>Local: </strong> {{participar.nome}}<br>
+        <strong>Ida: </strong> {{participar.dt_criacao}}<br>
+        <strong>Volta: </strong> {{participar.tempoRetorno}}<br>
+        <strong>Valor R$: </strong> {{participar.valor}}
       </ion-col>
-      <ion-col>
-      <img src="assets/imagens/excluir.png" height="30" (click)="deletar(participar.id)">
-</ion-col>
-</ion-item>
-</ion-list>
+
+      <ion-col size="6">
+        <img src="assets/imagens/excluir.png" height="30" (click)="deletar(participar.id)">
+      </ion-col>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
 <div class="rodape">
   <ion-grid>
     <ion-row>
@@ -42,4 +36,3 @@
     </ion-row>
   </ion-grid>
 </div>
-
