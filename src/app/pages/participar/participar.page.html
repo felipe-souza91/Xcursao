@@ -5,9 +5,9 @@
     </ion-buttons>
     <ion-title>  Minhas participações</ion-title>
   </ion-toolbar>
-  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate color="white">
-  </ion-searchbar>
 </ion-header>
+<ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate color="white">
+</ion-searchbar>
 
 <ion-content>
 <ion-list *ngFor = "let participar of participarem">

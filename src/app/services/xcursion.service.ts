@@ -93,7 +93,7 @@ export class XcursionService {
     )
   }
 
-  getselecionaXcursions(nome:string) {
+  getselecionaXcursions(nome: string) {
     this.xcursionsCollection = this.afs.collection<Xcursion>('Xcursions', ref => ref.where('nome', '==', nome));
     return this.xcursionsCollection.snapshotChanges().pipe(
       map(actions => {

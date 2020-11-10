@@ -4,5 +4,6 @@ export interface Avaliacao {
     nome_criador?: string;
     email?: string;
     data?: Date;
+    avaliador?: string;
     avaliacao?: string;
 }

@@ -11,12 +11,13 @@ import { map } from 'rxjs/operators';
 export class AvaliacaoService {
   private avaliacaoCollection: AngularFirestoreCollection<Avaliacao>;
 
-  constructor( private afs:AngularFirestore,
-    ) {
+  constructor(private afs: AngularFirestore,
+  ) {
     this.avaliacaoCollection = this.afs.collection<Avaliacao>('Avaliacao');
-   }
+  }
 
-   getoutrasXcursions() {
+  getPrincipais(email: string) {
+    this.avaliacaoCollection = this.afs.collection<Avaliacao>('Avaliacao', ref => ref.where('email','==', email));
     return this.avaliacaoCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -27,8 +28,26 @@ export class AvaliacaoService {
       })
     )
   }
-  
+
+  getPrincipaisBusca(nome: string, email: string) {
+    
+    this.avaliacaoCollection = this.afs.collection<Avaliacao>('Avaliacao', ref => ref.where('local', '==', nome).where('email', '==', email));
+    return this.avaliacaoCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    )
+  }
+
   addXAvaliacao(avaliacao: Avaliacao) {
     return this.avaliacaoCollection.add(avaliacao);
+  }
+
+  deleteAvaliação(id: string) {
+    return this.avaliacaoCollection.doc<Avaliacao>(id).delete();
   }
 }

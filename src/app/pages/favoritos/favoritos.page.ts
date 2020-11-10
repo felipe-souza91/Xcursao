@@ -69,8 +69,6 @@ export class FavoritosPage implements OnInit {
   ngOnInit() {
   }
 
-
-
   deletar(id: string) {
     this.favoritaService.deleteFavorito(id);
     console.log('deletado');

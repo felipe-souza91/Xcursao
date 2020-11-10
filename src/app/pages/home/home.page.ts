@@ -45,7 +45,7 @@ export class HomePage implements OnInit {
   private xcursionlista: Xcursionlista = {};
   public avaliacao: string = '';
   public id: string;
-  private avaliacaolista: Avaliacao= {};
+  private avaliacaolista: Avaliacao = {};
   stars: string[] = [];
   progress = 0;
   @Input() numStars: number = 4;
@@ -88,12 +88,9 @@ export class HomePage implements OnInit {
       });
       this.bloq = true;
     }
-   
-
-  this.visualavaliação();
-    
-
+    this.visualavaliação();
   }
+
   async galeryPhoto() {
     await this.router.navigate(['/addphoto', { locs: this.email }]);
   }
@@ -101,11 +98,11 @@ export class HomePage implements OnInit {
     this.xcursionsSubscription = this.xcursionsService.getXcursion(xcursionId).subscribe(data => {
       this.xcursionlista = data;
     });
-    
-  
-    
+
+
+
   }
-  visualavaliação(){
+  visualavaliação() {
     this.stars.push("star");
     this.stars.push("star");
     this.stars.push("star");
@@ -114,7 +111,7 @@ export class HomePage implements OnInit {
 
   //Sistema de avaliação
 
-  calc(){
+  calc() {
     this.stars = [];
     let tmb = this.value;
     for (let i = 0; i < this.numStars; i++, tmb--) {
@@ -126,10 +123,10 @@ export class HomePage implements OnInit {
     }
   }
 
-  startClicked(index, nome:string) {
-   
+  startClicked(index, nome: string) {
+
     this.avaliacao = index;
-  this.value = index + 1;
+    this.value = index + 1;
     this.ionClick.emit(this.value);
     this.calc();
     this.xcursionsSubscription = this.xcursionsService.getselecionaXcursions(nome).subscribe(data => {
@@ -137,34 +134,34 @@ export class HomePage implements OnInit {
     });
   }
 
-  
-  enviaAvaliacao( local: string, nome_criador: string){
-try{
 
-  //Recebe os dados para enviar no firebase
-this.avaliacaolista.data = new Date();
-this.avaliacaolista.local = local;
-this.avaliacaolista.nome_criador = 'nulo';
-this.avaliacaolista.email = this.email;
-this.avaliacaolista.avaliacao = this.avaliacao;
+  enviaAvaliacao(local: string, email: string, nome_criador: string) {
+    try {
 
- this.avaliacaoService.addXAvaliacao(this.avaliacaolista);
- this.presentToast('Avaliado com sucesso!');
+      //Recebe os dados para enviar no firebase
+      this.avaliacaolista.data = new Date();
+      this.avaliacaolista.local = local;
+      this.avaliacaolista.nome_criador = nome_criador;
+      this.avaliacaolista.email = email;
+      this.avaliacaolista.avaliador = this.email;
+      this.avaliacaolista.avaliacao = this.avaliacao;
+      this.avaliacaoService.addXAvaliacao(this.avaliacaolista);
+      this.presentToast('Avaliado com sucesso!');
 
- this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
-  this.xcursions = data;
-});
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+        this.xcursions = data;
+      });
 
-}catch(error){
-console.log("erro");
-console.log(local);
-}
+    } catch (error) {
+      console.log("erro");
+      console.log(local);
+    }
   }
   //Fim da avaliação
 
 
   adicionarFavorito(xcursionId: string, xcursionNome: string) {
- 
+
     this.loadxcursion(xcursionId);
 
     if (xcursionId == null) {
@@ -238,7 +235,7 @@ console.log(local);
     await this.router.navigate(['/home', { locs: this.email }]);
   }
 
-   async more(){
+  async more() {
     await this.router.navigate(['/menu', { locs: this.email }]);
   }
 
