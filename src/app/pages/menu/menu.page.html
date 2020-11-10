@@ -7,6 +7,9 @@
       <ion-item button >
         <h3>Dados pessoais</h3>
       </ion-item>
+      <ion-item button  (click)="avaliacao()" >
+        <h3>Avaliações</h3>
+      </ion-item>
       <ion-item button>
         <h3>Editar</h3>
       </ion-item>
@@ -14,10 +17,10 @@
         <h3>Informações</h3>
       </ion-item>
       <ion-item button>
-        <h3 button routerLink="/contato">Contato</h3>
+        <h3 button (click)="contato()">Contato</h3>
       </ion-item>
       <ion-item button>
-        <h3>Sair</h3>
+        <h3 (click)="sair()">Sair</h3>
       </ion-item>
      
       
@@ -26,7 +29,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-        <img src="assets/imagens/voltar.svg" width="30" height="30" button routerLink='/home'/>
+        <img src="assets/imagens/voltar.svg" width="30" height="30" button (click)='voltar()'/>
       </ion-col>
     </ion-row>
   </ion-grid>

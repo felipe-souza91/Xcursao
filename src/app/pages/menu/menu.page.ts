@@ -1,3 +1,5 @@
+import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -7,10 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+private email: string = null;
+  constructor( private router: Router,
+    private activeRoute: ActivatedRoute,
+     private authService: AuthService
+    ) { 
 
-  constructor() { }
+    this.email = this.activeRoute.snapshot.params['locs'];
+  }
 
   ngOnInit() {
+  }
+
+  avaliacao(){
+    this.router.navigate(['/avaliacao', { locs: this.email }]);
+  }
+
+  contato(){
+    this.router.navigate(['/contato', { locs: this.email }]);
+  }
+  
+
+  voltar(){
+    this.router.navigate(['/home', { locs: this.email }]);
+  }
+
+  sair(){
+this.authService.logout();
   }
   
 
