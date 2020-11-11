@@ -4,17 +4,15 @@
   <img src="assets/imagens/user.svg" width="60">
   <div class="conteudo">
     <ion-list>
+      <!--
       <ion-item button >
-        <h3>Dados pessoais</h3>
+        <h3 >Dados pessoais</h3>
+      </ion-item>--->
+      <ion-item button  routerLink = '/gps' >
+        <h3>Gps</h3>
       </ion-item>
-      <ion-item button  (click)="avaliacao()" >
+      <ion-item button  (click)="avaliacao()">
         <h3>Avaliações</h3>
-      </ion-item>
-      <ion-item button>
-        <h3>Editar</h3>
-      </ion-item>
-      <ion-item button>
-        <h3>Informações</h3>
       </ion-item>
       <ion-item button>
         <h3 button (click)="contato()">Contato</h3>
@@ -22,8 +20,6 @@
       <ion-item button>
         <h3 (click)="sair()">Sair</h3>
       </ion-item>
-     
-      
     </ion-list>
   </div>
   <ion-grid>

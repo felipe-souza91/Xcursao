@@ -11,7 +11,7 @@ declare var google: any;
   styleUrls: ['./gps.page.scss'],
 })
 export class GpsPage implements OnInit {
-
+  search: string="";
   map: any;
   marker: any;
   latitude: any="";
@@ -53,4 +53,5 @@ ref.longitude= position.coords.longitude.toString();
 ref.timestamp = (new Date(this.timestamp)).toString();
     })
   }
+  searchChanged(){}
 }
