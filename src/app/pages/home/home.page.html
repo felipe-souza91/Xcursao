@@ -4,11 +4,10 @@
   </label>
    <div class="subtopo">
       <img src="assets/imagens/heart.svg" (click)="favoritos()" height="30" />
-      Meus favoritos
+      <ion-label>Meus favoritos</ion-label>
       <ion-checkbox [ngModel]="outrasViagens" (click)="acionar()"></ion-checkbox>
-      <ion-label> Minhas viagens</ion-label>
+     <ion-label> Minhas viagens</ion-label>
    </div>
-     
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
 </div>
@@ -95,16 +94,20 @@
           <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
         </ion-col>
 
+        <ion-col size="1" *ngFor="let user of users">
+          <img src="assets/imagens/editar.svg" button [routerLink]="['/alterar-login', user.id]" height="40">
+        </ion-col>
+
         <ion-col size="1">
           <img src="assets/imagens/add.svg" (click)="detail()" width="40" height="40">
         </ion-col>
 
-        <ion-col size="1" *ngFor="let user of users">
-          <img src="assets/imagens/alterarLogin.png" button [routerLink]="['/alterar-login', user.id]" height="50">
+        <ion-col size="1">
+          <img src="assets/imagens/binoculo.svg" button (click)="MinhasParticipacoes()" width="42" height="42">
         </ion-col>
 
         <ion-col size="1">
-          <img src="assets/imagens/visualizar.png" button (click)="MinhasParticipacoes()" width="40" height="40">
+          <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
         </ion-col>
 
         <ion-col size="1">
