@@ -1,3 +1,17 @@
+ion-header{
+    ion-toolbar{
+        ion-title{
+            background-color: #2a7fffff;
+            color: white;
+            font-size: 18px;
+
+        }
+    }
+}
+
+ion-content{
+    background-color: darkturquoise;
+}
 .rodape{
     left: 0;
     right: 0;
@@ -6,7 +20,7 @@
     background-color: #d7eef4ff;
     img{
         float: right;
-        margin-right: 20px;
+        margin: auto;
     }
 }
 strong{
@@ -17,7 +31,23 @@ h5{
 }
 
 .alinhar{
-    margin-left: 18%;
+    width: 400px;
+    margin:0 auto;
+    padding: 10px;
+    text-align: center;
+    img{
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+  h3{
+     align-items: center;
+     color: blue;
+     text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  }
+  p{
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  }
+
 }
 .cor-ion{
     color: blue;

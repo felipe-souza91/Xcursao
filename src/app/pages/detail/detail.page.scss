@@ -1,5 +1,13 @@
+ion-header{
+    ion-toolbar{
+        ion-title{
+            background-color: dodgerblue;
+            color: white;
+            font-size: 20px;
+        }
+    }
+}
 ion-list{
-    
     ion-item{
         margin-bottom: 10px;
         border-radius: 10px;
@@ -9,4 +17,3 @@ ion-list{
         margin-left: 80px;
     }
 }
-

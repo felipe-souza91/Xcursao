@@ -3,12 +3,15 @@
     <ion-title>Meus favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate
+<div class="search">
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar por local..." animate
   color="white">
-</ion-searchbar>
+  </ion-searchbar>
+</div>
+
+
 <ion-content>
-  <br>
-  <ion-list>
+  <ion-list >
     <ion-item *ngFor="let favorito of favoritos">
       <ion-item button [routerLink]="['/detailscursion-favorito', favorito.id]">
         <ion-col size="4">
