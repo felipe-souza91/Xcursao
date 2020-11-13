@@ -20,7 +20,7 @@
       <ion-textarea placeholder="Assunto" type="text" [(ngModel)] =" contato.assunto" ></ion-textarea>
       </ion-item>
     </ion-list>
-      <ion-button (click)="enviaContato()">Enviar</ion-button>
+      <ion-button  (click)="enviaContato()" [disabled]="contato.assunto == ''">Enviar</ion-button>
 
       <ion-list>
         <ion-item>

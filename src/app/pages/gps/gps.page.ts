@@ -39,19 +39,24 @@ export class GpsPage implements OnInit {
 var gps = new google.maps.LatLng(position.coords.altitude, position.coords.longitude);
 if(ref.marker== null){
 
-  ref.map = new google.maps.Maker({
-    position: gps,
+  var marker = new google.maps.Marker ({
     map: ref.map,
-    title: 'Minha posição atual'
-  })
+    position: gps,
+    label: {
+        text: "A", 
+        color: "white"
+    }                            
+});
+
 }else{
   ref.marker.setPosition(gps);
 }
 ref.map.panTo(gps);
 ref.latitude = position.coords.latitude.toString();
 ref.longitude= position.coords.longitude.toString();
-ref.timestamp = (new Date(this.timestamp)).toString();
+ref.timestamp = (new Date().toString());
     })
   }
+  
   searchChanged(){}
 }

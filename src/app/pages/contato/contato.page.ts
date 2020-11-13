@@ -15,6 +15,7 @@ export class ContatoPage implements OnInit {
   private loading: any;
   private email: string = null;
 
+
   constructor(private ContatoService: ContatoService,
     private loadingCtrl: LoadingController,
     private router: Router,
@@ -24,23 +25,24 @@ export class ContatoPage implements OnInit {
 
     this.email = this.activeRoute.snapshot.params['locs'];
     this.contato.data = new Date();
+
+    this.contato.assunto ='';
+
+    
   } 
 
   ngOnInit() {
   }
 
   async enviaContato() {
-    //this.presentLoading();
     try {
       this.ContatoService.addContato(this.contato);
-      await this.presentToast('Contato enciado');
+      await this.presentToast('Contato enviado');
       await this.router.navigate(['/home', { locs: this.email }]);
 
     } catch (error) {
       console.log("erro", this.contato);
-    } finally {
-      this.loading.dismiss();
-    }
+    } 
   }
   async voltar() {
     await this.router.navigate(['/menu', { locs: this.email }]);

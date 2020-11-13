@@ -146,15 +146,15 @@ export class HomePage implements OnInit {
       this.avaliacaolista.avaliador = this.email;
       this.avaliacaolista.avaliacao = this.avaliacao;
       this.avaliacaoService.addXAvaliacao(this.avaliacaolista);
+     
       this.presentToast('Avaliado com sucesso!');
 
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
-
+      this.outrasViagens = false;
     } catch (error) {
       console.log("erro");
-      console.log(local);
     }
   }
   //Fim da avaliação

@@ -26,9 +26,6 @@ export class LoginPage implements OnInit {
   public userLogin: User = {};
   public userRegister: User = {};
   private loading: any;
-  private home: HomePage;
-  private actionCode: string = "thiago@gmail.com";
-  private newPassword: "101010";
 
   constructor(
     private afa: AngularFireAuth,
@@ -62,7 +59,7 @@ export class LoginPage implements OnInit {
       let message: string;
       switch (error.code) {
         case 'auth/email-already-in-use':
-          message = 'Email já Cadastrado!';
+          message = 'Email já cadastrado!';
           break;
         case 'auth/invalid-email':
           message = 'Email Invalido';
