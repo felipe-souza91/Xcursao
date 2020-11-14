@@ -13,7 +13,8 @@ export class ParticiparPage implements OnInit {
   private participarem = new Array<Participar>();
   private participarSubscription: Subscription;
   private email: string = null;
-   public search: string = '';
+  public search: string = '';
+  public verificaParticipacao: string = '';
 
   constructor(
     private participarService: ParticiparService,
@@ -24,12 +25,19 @@ export class ParticiparPage implements OnInit {
     this.email = this.activeRoute.snapshot.params['locs'];
     this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
       this.participarem = data;
+
+      if (data.length > 0) {
+        this.verificaParticipacao = "";
+      } else {
+        this.verificaParticipacao = "Não tem nenhuma participação";
+
+      }
     });
-    if(this.search == ''){
-    this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
-      this.participarem = data;
-    });
-  }
+    if (this.search == '') {
+      this.participarSubscription = this.participarService.getParticipar(this.email).subscribe(data => {
+        this.participarem = data;
+      });
+    }
   }
 
   ngOnInit() {
@@ -48,7 +56,7 @@ export class ParticiparPage implements OnInit {
         this.participarem = data;
       });
     }
-   
+
   }
 
   async deletar(id: string) {

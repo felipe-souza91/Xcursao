@@ -20,7 +20,9 @@ export class FavoritosPage implements OnInit {
   private xcursionId: string = null;
   private email: string = null;
   private favorito: DetailscursionPage;
-    public search: string = '';
+  public search: string = '';
+  public verificaFavoritos: string = '';
+  public style: string = '';
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -32,30 +34,52 @@ export class FavoritosPage implements OnInit {
     this.xcursionId = this.activeRoute.snapshot.params['id'];
     this.email = this.activeRoute.snapshot.params['locs'];
 
+
+
     if (this.xcursionId) {
 
+
       this.loadXvision();
+
     }
     this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
       this.favoritos = data;
-    });
-    if(this.search == ''){
-    this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
-      this.favoritos = data;
-    });
-  }
-    }
 
-  voltar(){
-    this.router.navigate(['/home', {locs: this.email}]);
-  }
+      if (data.length > 0) {
+        this.verificaFavoritos = '';
+      } else {
+        this.verificaFavoritos = 'Você não tem favoritos';
+      }
 
-  searchChanged(){
-    if(this.search == ''){
+
+
+    });
+    if (this.search == '') {
       this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
         this.favoritos = data;
       });
-    }else{
+    }
+
+
+
+
+
+    //this.verificaFavoritos = 'Você não tem favoritos';
+
+
+
+  }
+
+  voltar() {
+    this.router.navigate(['/home', { locs: this.email }]);
+  }
+
+  searchChanged() {
+    if (this.search == '') {
+      this.favoritaSubscription = this.favoritaService.getFavoritos(this.email).subscribe(data => {
+        this.favoritos = data;
+      });
+    } else {
       this.favoritaSubscription = this.favoritaService.getFavoritoLocal(this.email, this.search).subscribe(data => {
         this.favoritos = data;
       });

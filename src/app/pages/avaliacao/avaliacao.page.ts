@@ -14,6 +14,8 @@ export class AvaliacaoPage implements OnInit {
   private avaliacoes = new Array<Avaliacao>();
   private avaliacaoSubscription: Subscription;
   private email: string = null;
+  public verificaAvaliacao: string = '';
+
   constructor(
     private avaliacaoService: AvaliacaoService,
     private router: Router,
@@ -23,6 +25,14 @@ export class AvaliacaoPage implements OnInit {
 
     this.avaliacaoSubscription = this.avaliacaoService.getPrincipais(this.email).subscribe(data => {
       this.avaliacoes = data;
+
+      if(data.length > 0){
+
+        this.verificaAvaliacao = '';
+
+      }else{
+       this.verificaAvaliacao = ' Não há avaliação no momento';
+      }
     });
   }
 
