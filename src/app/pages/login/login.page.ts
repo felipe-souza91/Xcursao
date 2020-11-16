@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
   public userLogin: User = {};
   public userRegister: User = {};
   private loading: any;
+  conf_senha: string = '';
 
   constructor(
     private afa: AngularFireAuth,
@@ -77,7 +78,9 @@ export class LoginPage implements OnInit {
 
 
   async register() {
-    await this.presentLoading();
+   
+    if(this.conf_senha == this.userRegister.password){
+      await this.presentLoading();
     try {
       const newUserObject = Object.assign({}, this.userRegister);
       delete newUserObject.password;
@@ -101,6 +104,10 @@ export class LoginPage implements OnInit {
     } finally {
       this.loading.dismiss();
     }
+  }else{
+
+    this.presentToast('Senhas não confere!');
+  }
   }
   async redefenirPassword() {
     if (this.userLogin.email == '') {
