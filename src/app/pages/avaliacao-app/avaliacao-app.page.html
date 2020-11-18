@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Avaliacao do App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h5 style="margin-left:50px;"><strong>Avalie o nosso app xcursão </strong></h5>
+  <p style="margin-left:20px;">Sua avaliação é muito inportante pra nós</p>
+
+  <ion-list>
+    <ion-item>
+      <ion-col *ngFor="let star of stars; let i = index" button (click)="startClicked(i)">
+        <ion-icon [name]="star" ></ion-icon>
+        </ion-col>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="Sugestão/reclamação" type="text" [(ngModel)]="avaliacaoApp.sugestao" [disabled]="avaliacaoApp.avaliacao == '' "></ion-textarea>
+    </ion-item>
+    <ion-button color="success" (click)="enviaAvaliacao()" [disabled]="avaliacaoApp.sugestao == ''">Enviar</ion-button>
+      
+  </ion-list>
+  <p  style="margin-left:100px;" button (click)="sair()"> Avaliar outro dia</p>
+</ion-content>
+

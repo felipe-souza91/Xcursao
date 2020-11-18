@@ -102,6 +102,10 @@ const routes: Routes = [
     path: 'avaliacao',
     loadChildren: () => import('./pages/avaliacao/avaliacao.module').then( m => m.AvaliacaoPageModule)
   },
+  {
+    path: 'avaliacao-app',
+    loadChildren: () => import('./pages/avaliacao-app/avaliacao-app.module').then( m => m.AvaliacaoAppPageModule)
+  },
 
 
 

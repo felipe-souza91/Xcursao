@@ -35,7 +35,7 @@ private email: string = null;
   }
 
   sair(){
-this.authService.logout();
+    this.router.navigate(['/avaliacao-app', { locs: this.email }]);
   }
   
   
