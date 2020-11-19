@@ -3,7 +3,7 @@ import { HomePage } from './../home/home.page';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { User } from 'src/app/interfaces/user';
@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   public user: any = {};
+  
 
   @ViewChild(IonSlides, { static: true }) slides: IonSlides;
   public roadPosition: number = 0;
@@ -29,13 +30,19 @@ export class LoginPage implements OnInit {
   conf_senha: string = '';
 
   constructor(
+    private zone: NgZone,
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
     public keyboard: Keyboard,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router) { 
+      
+      this.zone.run(() => {
+        this.router.navigate(['/login']);
+    });
+    }
 
   ngOnInit() {
     this.keyboard;
