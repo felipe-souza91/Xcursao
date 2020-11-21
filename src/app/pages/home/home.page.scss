@@ -72,20 +72,16 @@ ion-content{
     }
     ion-grid{
         background-color: #d7eef4ff;
-
         ion-row{
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-
-            ion-col{
-                padding-left: 13px;
-                padding-right: 14px;
-            }
-        
+           ion-item-sliding{
+               margin: auto;
+                ion-col{
+                    flex-direction: row;
+                    padding-left: 5%;
+                }
+           }
         }
         ion-rating{
             font-size: 20px;
         }
-        
     }
