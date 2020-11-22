@@ -146,7 +146,7 @@ export class HomePage implements OnInit {
       this.avaliacaolista.avaliador = this.email;
       this.avaliacaolista.avaliacao = this.avaliacao;
       this.avaliacaoService.addXAvaliacao(this.avaliacaolista);
-     
+
       this.presentToast('Avaliado com sucesso!');
 
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
@@ -217,7 +217,6 @@ export class HomePage implements OnInit {
     } else {
       this.outrasViagens = true;
       this.bloq = true;
-
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
 
@@ -244,22 +243,49 @@ export class HomePage implements OnInit {
   }
   searchChanged() {
     if (this.bloq == true) {
-      this.xcursionsSubscription = this.xcursionsService.getListaxcursion(this.search).subscribe(data => {
-        this.xcursions = data;
-      });
+
+      if (this.search != '') {
+        this.xcursionsSubscription = this.xcursionsService.getListaxcursion(this.search).subscribe(data => {
+          this.xcursions = data;
+        });
+      } else {
+        this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+          this.xcursions = data;
+        });
+      }
+
+
     } else {
 
-      if (this.search.length > 0) {
+      this.outrasViagens = false;
+      this.bloq = false;
+
+      if (this.search == '') {
         this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search, this.email).subscribe(data => {
           this.xcursions = data;
         });
+
       } else {
 
         this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
           this.xcursions = data;
         });
+
       }
     }
+  }
+
+  //Deleta xcursão quando chega no fim da data final.
+
+  deletarxcursion(temporetorno: string, id: string) {
+    var myDate = new Date();
+    var dataatual = myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate();
+    console.log(dataatual);
+    if (dataatual == temporetorno) {
+      this.xcursionsService.deleteXcursion(id);
+      this.presentToast("Excursão foi deletadata por vencimento!");
+    }
+
   }
 
   ngOnDestroy() {

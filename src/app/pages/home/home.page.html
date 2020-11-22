@@ -40,7 +40,7 @@
           <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="25">
         </div>
        
-          <ion-item button [routerLink]="['/detailscursion', xcursion.id]">
+          <ion-item button [routerLink]="['/detailscursion', xcursion.id]" (click)="deletarxcursion(xcursion.tempoRetorno, xcursion.id)">
             <ion-label>
               <p><strong>{{xcursion.nome}}</strong></p> <br>
               <p style="font: normal 8pt arial"> <strong>Qtde:</strong> {{xcursion.qt_vagas}}</p>
