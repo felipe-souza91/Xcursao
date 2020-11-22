@@ -260,7 +260,7 @@ export class HomePage implements OnInit {
       this.outrasViagens = false;
       this.bloq = false;
 
-      if (this.search == '') {
+      if (this.search != '') {
         this.xcursionsSubscription = this.xcursionsService.getXcursions(this.search, this.email).subscribe(data => {
           this.xcursions = data;
         });
@@ -280,7 +280,6 @@ export class HomePage implements OnInit {
   deletarxcursion(temporetorno: string, id: string) {
     var myDate = new Date();
     var dataatual = myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate();
-    console.log(dataatual);
     if (dataatual == temporetorno) {
       this.xcursionsService.deleteXcursion(id);
       this.presentToast("Excursão foi deletadata por vencimento!");

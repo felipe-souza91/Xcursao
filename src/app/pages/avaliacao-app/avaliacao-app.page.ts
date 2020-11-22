@@ -86,7 +86,7 @@ export class AvaliacaoAppPage implements OnInit {
       this.avaliacaoApp.email = this.email;
       this.avaliacaoAppService.addAvaliacaoApp(this.avaliacaoApp);
       this.authService.logout();
-      this.presentToast("Avaliacão enviada! Obrigado!");
+      this.presentToast("Avaliação enviada! Obrigado!");
 
     } catch (error) {
       this.presentToast("Erro ao enviar!");
