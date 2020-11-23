@@ -84,6 +84,12 @@ export class HomePage implements OnInit {
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
+
+
+      
+      this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
+        this.users = data;
+      });
       this.bloq = true;
     }
     this.visualavaliação();
@@ -96,9 +102,6 @@ export class HomePage implements OnInit {
     this.xcursionsSubscription = this.xcursionsService.getXcursion(xcursionId).subscribe(data => {
       this.xcursionlista = data;
     });
-
-
-
   }
   visualavaliação() {
     this.stars.push("star");
@@ -203,10 +206,8 @@ export class HomePage implements OnInit {
       }
     }
   }
+
   acionar() {
-
-
-    
     if (this.outrasViagens == true) {
       this.outrasViagens = false;
       this.bloq = false;
@@ -214,15 +215,14 @@ export class HomePage implements OnInit {
         this.xcursions = data;
       });
     } else {
-       
       this.outrasViagens = true;
       this.bloq = true;
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
-
     }
   }
+
   ngOnInit() {
   }
 
