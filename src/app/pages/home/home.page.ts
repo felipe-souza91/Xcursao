@@ -80,9 +80,7 @@ export class HomePage implements OnInit {
 
     } else {
 
-      this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
-        this.users = data;
-      });
+     
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
@@ -208,15 +206,16 @@ export class HomePage implements OnInit {
 
   acionar() {
     if (this.outrasViagens == true) {
-      this.outrasViagens = true;
-      this.bloq = true;
-      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+      this.outrasViagens = false;
+      this.bloq = false;
+      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
       });
     } else {
-        this.outrasViagens = false;
-      this.bloq = false;
-      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+       
+      this.outrasViagens = true;
+      this.bloq = true;
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
 
