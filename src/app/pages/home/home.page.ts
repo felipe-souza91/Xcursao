@@ -203,8 +203,10 @@ export class HomePage implements OnInit {
       }
     }
   }
-
   acionar() {
+
+
+    
     if (this.outrasViagens == true) {
       this.outrasViagens = false;
       this.bloq = false;
