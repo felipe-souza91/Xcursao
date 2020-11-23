@@ -207,20 +207,19 @@ export class HomePage implements OnInit {
   }
 
   acionar() {
-    if (this.outrasViagens) {
-      this.outrasViagens = false;
+    if (this.outrasViagens == true) {
+      this.outrasViagens = true;
+      this.bloq = true;
+      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
+        this.xcursions = data;
+      });
+    } else {
+        this.outrasViagens = false;
       this.bloq = false;
       this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
         this.xcursions = data;
       });
 
-    } else {
-      this.outrasViagens = true;
-      this.bloq = true;
-      this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
-        this.xcursions = data;
-
-      });
     }
   }
   ngOnInit() {
