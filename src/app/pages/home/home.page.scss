@@ -71,13 +71,13 @@ ion-content{
         border-radius: 10px;
     }
     ion-grid{
-        background-color: #d7eef4;
+        background-color: #d7eef4ff;
         ion-row{
            ion-item-sliding{
                margin: auto;
                 ion-col{
                     flex-direction: row;
-                    padding-left: 3%;
+                    padding-left: 5%;
                 }
            }
         }

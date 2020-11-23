@@ -101,7 +101,7 @@ export class DetailPage implements OnInit {
       }
       const path: string = fileUrl.substring(0, fileUrl.lastIndexOf('/'));
       const buffer: ArrayBuffer = await this.file.readAsArrayBuffer(path, file);
-      const blob = new Blob([buffer], { type: 'imagens/jpeg'});
+      const blob = new Blob([buffer], { type: 'image/jpeg'});
       this.uploadPicture(blob);
     } catch (error) {
       console.error(error);
@@ -128,6 +128,7 @@ export class DetailPage implements OnInit {
     if (this.xcursionId) {
 
       try {
+        
         await this.xcursionService.updateXcursion(this.xcursionId, this.xcursion);
         this.loading.dismiss();
         this.router.navigate(['/home', { locs: this.xcursion.email }]);

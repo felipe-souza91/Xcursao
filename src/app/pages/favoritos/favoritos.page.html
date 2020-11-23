@@ -8,11 +8,7 @@
   color="white">
   </ion-searchbar>
 </div>
-
-
 <ion-content>
-
-  
   <ion-list >
     <ion-item *ngFor="let favorito of favoritos">
       <ion-item button [routerLink]="['/detailscursion-favorito', favorito.id]">

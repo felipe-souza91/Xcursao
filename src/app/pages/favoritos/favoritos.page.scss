@@ -7,18 +7,16 @@ ion-header{
             font-weight: bold;
             height: 100%;
 
-            h1{
-                margin: 0 auto;
-                margin-left: 20px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                color: white;
-            }
-
         }
     }
 
-    
+    h1{
+        margin: 0 auto;
+        margin-left: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: white;
+    }
 }
 .search{
     background-color: #2a7fffff;

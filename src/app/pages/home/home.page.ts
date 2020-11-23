@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   private user: User = {};
   private search: string;
   public email: string;
-  public outrasViagens = false;
+  public outrasViagens:boolean;
   private bloq: boolean;
   public mensagemqtd: string = '';
   private xcursion: Xcursion = {};
@@ -85,8 +85,8 @@ export class HomePage implements OnInit {
         this.xcursions = data;
       });
 
-
       
+
       this.userSubscription = this.authService.getUsers(this.email).subscribe(data => {
         this.users = data;
       });
@@ -208,19 +208,20 @@ export class HomePage implements OnInit {
   }
 
   acionar() {
-    if (this.outrasViagens == true) {
-      this.outrasViagens = false;
-      this.bloq = false;
-      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
-        this.xcursions = data;
-      });
-    } else {
+  console.log(this.outrasViagens);
+    if (this.outrasViagens == false) {
       this.outrasViagens = true;
       this.bloq = true;
       this.xcursionsSubscription = this.xcursionsService.getoutrasXcursions().subscribe(data => {
         this.xcursions = data;
       });
-    }
+    } else {
+      this.outrasViagens = false;
+      this.bloq = false;
+      this.xcursionsSubscription = this.xcursionsService.getXcursionsTotal(this.email).subscribe(data => {
+        this.xcursions = data;
+      });
+      }
   }
 
   ngOnInit() {

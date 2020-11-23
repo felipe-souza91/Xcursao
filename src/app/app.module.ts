@@ -19,7 +19,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import {GoogleMaps} from '@ionic-native/google-maps';
 
 
 @NgModule({
@@ -43,6 +43,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
         Camera,
         File,
         Geolocation,
+        GoogleMaps
 
     ],
     bootstrap: [AppComponent]
