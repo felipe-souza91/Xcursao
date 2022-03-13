@@ -11,8 +11,7 @@
   <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Procurar..." animate color="white">
   </ion-searchbar>
 </div>
-<ion-content>
-   
+<ion-content> 
   <div class="container">
     <ion-list *ngIf="!xcursions.length">
       <ion-item *ngFor="let item of [0,1,2,3,4]">
@@ -39,7 +38,6 @@
           <img src="assets/imagens/busicon.png"  (click)="participarXcursion(xcursion.id,xcursion.nome, xcursion.qt_vagas)" height="20">
           <img src="assets/imagens/favorito.png" (click)="adicionarFavorito(xcursion.id, xcursion.nome)" height="25">
         </div>
-       
           <ion-item button [routerLink]="['/detailscursion', xcursion.id]" (click)="deletarxcursion(xcursion.tempoRetorno, xcursion.id)">
             <ion-label>
               <p><strong>{{xcursion.nome}}</strong></p> <br>
@@ -57,12 +55,9 @@
             </div>
            <ion-item-options side="end">
           <ion-item-option color="danger" button (click)='deleteXcursion(xcursion.id)' [disabled]="bloq== true">
-
-            
             <ion-icon slot="top"></ion-icon>
             Excluir
           </ion-item-option>
-
           <ion-item-option button [routerLink]="['/detail', xcursion.id]" [disabled]="bloq== true">
             <ion-icon slot="top"></ion-icon>
             Alterar
@@ -73,47 +68,34 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-      
     </ion-list>
-    
   </div>
-
-  
 </ion-content>
-
 <ion-footer>
   <ion-grid>
     <ion-row>
       <ion-item-sliding>
-
         <ion-col size="1">
           <img src="assets/imagens/home.svg" (click)="home()" width="40" height="40">
         </ion-col>
-
         <ion-col size="1">
           <img src="assets/imagens/gps.svg" routerLink="/gps" width="40" height="40">
         </ion-col>
-
         <ion-col size="1" *ngFor="let user of users">
           <img src="assets/imagens/editar.svg" button [routerLink]="['/alterar-login', user.id]" height="40">
         </ion-col>
-
         <ion-col size="1">
           <img src="assets/imagens/add.svg" (click)="detail()" width="40" height="40">
         </ion-col>
-
         <ion-col size="1">
           <img src="assets/imagens/binoculo.svg" button (click)="MinhasParticipacoes()" width="42" height="42">
         </ion-col>
-
         <ion-col size="1">
           <img src="assets/imagens/heart.svg" button (click)="favoritos()" width="40" height="40">
         </ion-col>
-
         <ion-col size="1">
           <img src="assets/imagens/more.svg" button (click)="more()" width="20" height="40">
         </ion-col>
-        
       </ion-item-sliding>
     </ion-row>
   </ion-grid>
